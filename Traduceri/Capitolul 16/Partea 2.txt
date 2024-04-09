@@ -1,0 +1,63 @@
+În Oracle SQL, tipul de date INTERVAL este folosit pentru a reprezenta o perioadă de timp. 
+Poate fi folosit pentru a efectua operații aritmetice pe valori de dată și timestamp. 
+Iată exemple despre cum să lucrați cu tipurile de date INTERVAL:
+
+1. Crearea INTERVAL:
+Puteți crea intervale folosind cuvântul cheie INTERVAL.
+    Crearea unui interval de 3 zile
+    SELECT SYSDATE + INTERVAL '3' DAY AS future_date
+      FROM dual;
+
+    Crearea unui interval de 2 ore și 30 de minute
+    SELECT SYSTIMESTAMP + INTERVAL '2 30' MINUTE TO SECOND AS future_timestamp
+      FROM dual;
+
+2. Adăugarea și scăderea INTERVAL:
+Puteți efectua operații aritmetice cu intervale.
+    Adăugarea a 1 lună la data curentă
+    SELECT SYSDATE + INTERVAL '1' MONTH AS future_date
+      FROM dual;
+
+    Scăderea a 1 oră din marcajul de timp curent
+    SELECT SYSTIMESTAMP - INTERVAL '1' HOUR AS past_timestamp
+      FROM dual;
+
+3. Extrage componente din INTERVAL:
+Puteți folosi funcția EXTRACT pentru a recupera componente specifice dintr-un interval.
+    Extrage numărul de zile dintr-un interval
+    SELECT EXTRACT(DAY FROM INTERVAL '5' DAY) AS days_in_interval
+      FROM dual;
+
+    Extrage numărul de ore dintr-un interval
+    SELECT EXTRACT(HOUR FROM INTERVAL '2 03:30:00' DAY TO SECOND) AS hours_in_interval
+    FROM dual;
+
+4. Utilizarea INTERVAL cu date TIMESTAMP:
+Puteți adăuga un interval la un marcaj de timp pentru a obține un nou marcaj de timp.
+    Adăugarea a 3 ore și 30 de minute la marcajul de timp curent
+    SELECT SYSTIMESTAMP + INTERVAL '3 30' MINUTE TO SECOND AS future_timestamp
+      FROM dual;
+
+5. Utilizarea INTERVAL în clauza WHERE:
+Puteți utiliza intervale în clauza WHERE pentru a filtra datele în funcție de perioadele de timp.
+    Selectarea comenzilor plasate în ultimele 7 zile
+    SELECT order_id, order_date
+      FROM orders
+     WHERE order_date > SYSDATE - INTERVAL '7' DAY;
+
+6. Formatarea datelor INTERVAL:
+Puteți folosi funcția TO_DSINTERVAL pentru a formata un interval.
+    Formatarea unui interval
+    SELECT TO_DSINTERVAL('0 05:30:00') AS formatted_interval
+      FROM dual;
+
+7. Extrage componente ale intervalului DAY TO SECOND:
+Atunci când lucrați cu intervale DAY TO SECOND, puteți extrage componente individuale.
+    Extrage zile și ore dintr-un interval DAY TO SECOND
+    SELECT EXTRACT(DAY FROM INTERVAL '3 12:30:00' DAY TO SECOND) AS days_in_interval,
+           EXTRACT(HOUR FROM INTERVAL '3 12:30:00' DAY TO SECOND) AS hours_in_interval
+      FROM dual;
+
+Aceste exemple ilustrează diverse modalități de lucru cu tipurile de date INTERVAL în Oracle SQL. 
+Tipul de date INTERVAL este puternic pentru reprezentarea și manipularea perioadelor de timp într-un mod precis. 
+Consultați întotdeauna documentația Oracle pentru versiunea specifică pe care o utilizați pentru informații detaliate despre tipurile de date INTERVAL și modul lor de utilizare.

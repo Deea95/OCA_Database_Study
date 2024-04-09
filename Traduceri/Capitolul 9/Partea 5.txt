@@ -1,0 +1,19 @@
+În Oracle SQL, operatorii UNION și UNION ALL sunt folosiți pentru a combina rezultatele mai multor declarații SELECT. Iată câteva exemple de utilizare a acestor operatori:
+
+1. Operatorul UNION:
+Operatorul UNION este folosit pentru a combina rezultatele a două sau mai multe declarații SELECT, și înlătură rândurile duplicate din setul rezultat.
+```sql
+SELECT employee_id, employee_name FROM employees
+UNION
+SELECT manager_id, manager_name FROM managers;
+```
+
+2. Operatorul UNION ALL:
+Operatorul UNION ALL este similar cu UNION, dar nu înlătură rândurile duplicate; include toate rândurile din seturile rezultate combinate.
+```sql
+SELECT employee_id, employee_name FROM employees
+UNION ALL
+SELECT manager_id, manager_name FROM managers;
+```
+
+Aceste exemple demonstrează cum să folosești operatorii UNION și UNION ALL în Oracle SQL pentru a combina și compara rezultatele mai multor declarații SELECT. Asigură-te întotdeauna că declarațiile SELECT implicate au coloane compatibile, și folosește UNION ALL atunci când duplicările sunt acceptabile sau dorite. Consultă documentația Oracle pentru versiunea specifică pe care o utilizezi pentru informații cuprinzătoare despre operatorii de set și modul lor de utilizare.

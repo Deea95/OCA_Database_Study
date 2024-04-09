@@ -1,0 +1,29 @@
+Un non-equijoin, cunoscut și sub denumirea de theta join, este un tip de join în SQL în care condiția de join se bazează pe o comparație altfel decât egalitatea între coloane. Spre deosebire de un equijoin, care folosește operatorul de egalitate (=), un non-equijoin folosește alți operatori de comparație precum <, >, <=, >= sau <> (diferit).
+
+Iată un exemplu de utilizare a unui non-equijoin în Oracle SQL:
+Exemplu: Non-Equijoin
+
+Să presupunem că ai două tabele, "employees" și "salaries," și vrei să recuperezi angajații al căror salariu este mai mare decât media salarială din tabela "salaries":
+```sql
+SELECT e.employee_id
+     , e.employee_name
+     , e.salary
+     , s.average_salary
+  FROM employees e
+  JOIN (SELECT department_id, AVG(salary) AS average_salary
+          FROM salaries
+         GROUP BY department_id) s 
+       ON e.department_id = s.department_id 
+      AND e.salary > s.average_salary;
+```
+
+În acest exemplu:
+- Subinterogarea calculează salariul mediu pentru fiecare departament din tabela "salaries".
+- Interogarea principală efectuează apoi un non-equijoin între tabela "employees" și subinterogare pe baza department_id-ului.
+- Condiția de join include și condiția suplimentară e.salary > s.average_salary, făcându-l astfel un non-equijoin.
+
+Această interogare recuperează angajați împreună cu salariile lor și salariul mediu pentru departamentele lor respective, dar include doar angajații ai căror salarii sunt mai mari decât media salarială a departamentelor.
+
+Non-equijoins sunt utile atunci când trebuie să compari coloane folosind condiții diferite de egalitate. Cu toate acestea, ar trebui utilizate cu atenție, deoarece ar putea implica o logică mai complexă și potențial să ducă la seturi de rezultate mai mari.
+
+Asigură-te întotdeauna că non-equijoins-urile tale au sens în contextul datelor și cerințelor tale de afaceri. Înțelegerea relațiilor dintre coloane și logica din spatele condițiilor de join este crucială pentru scrierea unor interogări precise și eficiente.

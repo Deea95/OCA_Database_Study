@@ -1,0 +1,49 @@
+În Oracle SQL, atunci când folosești funcții de grupare precum COUNT, SUM, AVG, MAX și MIN, poți restricționa rezultatele adăugând o clauză HAVING. Clauza HAVING este similară cu clauza WHERE, dar este aplicată după clauza GROUP BY și este folosită pentru a filtra rezultatele grupului bazate pe condiții de agregare. Iată câteva exemple:
+
+1. Clauza HAVING de bază:
+Poți folosi clauza HAVING pentru a filtra grupurile bazate pe condiții de agregare.
+    SELECT department_id, COUNT(*) AS employee_count
+      FROM employees
+     GROUP BY department_id
+    HAVING COUNT(*) > 5;
+
+2. Combinarea HAVING cu GROUP BY:
+Poți folosi atât clauzele GROUP BY, cât și HAVING împreună pentru agregări mai complexe.
+    SELECT department_id
+         , job_id, AVG(salary) AS avg_salary
+      FROM employees
+     GROUP BY department_id
+            , job_id
+    HAVING AVG(salary) > 50000;
+
+3. Folosirea HAVING cu SUM:
+Poți folosi clauza HAVING cu funcția SUM pentru a filtra bazat pe suma totală a unei coloane.
+    SELECT department_id
+         , MAX(salary) AS max_salary
+      FROM employees
+     GROUP BY department_id
+    HAVING MAX(salary) > 80000;
+
+4. Filtrarea pe condiții de agregare:
+Clauza HAVING îți permite să filtrezi pe diverse condiții de agregare.
+    SELECT department_id
+         , AVG(salary) AS avg_salary
+      FROM employees
+     GROUP BY department_id
+    HAVING AVG(salary) BETWEEN 50000 AND 80000;
+
+5. Folosirea HAVING cu COUNT și operatori logici:
+Poți folosi operatorii logici în combinație cu COUNT și HAVING pentru a filtra grupurile bazate pe mai multe condiții.
+    SELECT department_id, COUNT(*) AS employee_count
+      FROM employees
+     GROUP BY department_id
+    HAVING COUNT(*) > 5 AND COUNT(*) < 10;
+
+6. Ascunderea valorilor NULL cu HAVING:
+Poți folosi clauza HAVING pentru a filtra grupurile care includ valori NULL.
+    SELECT department_id, AVG(salary) AS avg_salary
+      FROM employees
+     GROUP BY department_id
+    HAVING AVG(salary) IS NOT NULL;
+
+Aceste exemple demonstrează cum să folosești clauza HAVING pentru a restricționa rezultatele grupului în Oracle SQL atunci când lucrezi cu funcții de grupare. Clauza HAVING este în mod special utilă pentru filtrarea datelor agregate bazate pe condiții care implică rezultatele funcțiilor de grupare. Consultă întotdeauna documentația Oracle pentru versiunea specifică pe care o folosești pentru informații detaliate despre funcțiile de grupare și clauza HAVING.

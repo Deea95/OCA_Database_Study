@@ -1,0 +1,52 @@
+În SQL, funcțiile pentru caractere sunt folosite pentru a manipula și efectua operații pe date de tip șir de caractere. Aceste funcții pot fi utilizate atât în clauzele SELECT, cât și în clauzele WHERE pentru a manipula valorile șirurilor de caractere. Iată câteva funcții pentru caractere folosite în mod obișnuit în SQL:
+
+1. LENGTH:
+Returnează lungimea (numărul de caractere) a unui șir de caractere.
+     Utilizare LENGTH
+    SELECT nume
+         , LENGTH(nume) AS lungime_nume
+      FROM angajați;
+
+2. SUBSTR:
+Extrage un subșir dintr-un șir de caractere.
+    SELECT nume_produs
+         , SUBSTR(nume_produs, 1, 5) AS nume_scurt
+      FROM produse;
+
+3. UPPER și LOWER:
+Convertește un șir de caractere în majuscule sau minuscule.
+    SELECT nume
+         , UPPER(nume) AS nume_majuscule
+         , LOWER(prenume) AS prenume_minuscule
+      FROM angajați;
+
+4. TRIM:
+Înlătură spațiile inițiale sau finale dintr-un șir de caractere.
+    SELECT nume_produs
+        , TRIM(BOTH ' ' FROM nume_produs) AS nume_fără_spații
+      FROM produse;
+
+5. REPLACE:
+Înlocuiește aparițiile unui subșir cu un alt subșir.
+    SELECT nume_produs
+         , REPLACE(nume_produs, 'Mic', 'Mare') AS nume_actualizat
+      FROM produse;
+
+6. INSTR:
+Găsește poziția unui subșir într-un șir de caractere.
+    SELECT nume_produs, INSTR(nume_produs, 'XL') AS poziție_în_șir
+      FROM produse;
+
+7. LEFT și RIGHT nu sunt disponibile direct în Oracle SQL. În schimb, puteți folosi SUBSTR:
+Extrage un număr specificat de caractere din stânga sau din dreapta unui șir de caractere.
+    SELECT nume_produs
+         , SUBSTR(nume_produs, 1, 3) AS parte_stângă
+      FROM produse;
+
+8. COMPARARE CU SENSIBILITATE LA MAJUSCULE/MINUSCULE:
+Pentru comparații cu sensibilitate la majuscule/minuscule, puteți folosi operatorul BINARY.
+    SELECT nume
+      FROM angajați
+     WHERE nume = BINARY 'John';
+
+Aceste exemple ar trebui să fie aplicabile într-un mediu Oracle SQL. Consultați întotdeauna documentația Oracle pentru informații cele mai precise și detaliate legate de versiunea specifică de Oracle SQL pe care o utilizați.

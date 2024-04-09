@@ -1,0 +1,26 @@
+În Oracle SQL, funcțiile ROUND, TRUNC și MOD sunt folosite în mod obișnuit pentru a manipula numere. Iată exemple de cum poate fi folosită fiecare funcție:
+
+1. Funcția ROUND:
+Funcția ROUND este folosită pentru a rotunji o valoare numerică la un număr specificat de zecimale.
+    Rotunjirea unui număr la două zecimale:
+    SELECT ROUND(15.6789, 2) AS număr_rotunjit
+      FROM dual;
+
+2. Funcția TRUNC:
+Funcția TRUNC este folosită pentru a trunchia o valoare numerică la un număr specificat de zecimale sau pentru a trunchia o dată la o componentă specificată.
+    Trunchierea unui număr la o zecimală:
+    SELECT TRUNC(25.345, 1) AS număr_trunchiat
+      FROM dual;
+
+3. Funcția MOD:
+Funcția MOD returnează restul unei operații de împărțire.
+    Calcularea restului împărțirii:
+    SELECT MOD(17, 5) AS rest
+      FROM dual;
+
+    Folosirea funcției MOD pentru a verifica numerele pare:
+    SELECT employee_id
+      FROM employees
+     WHERE MOD(employee_id, 2) = 0;
+
+Aceste exemple ilustrează cum să folosiți funcțiile ROUND, TRUNC și MOD pentru a manipula numere în diferite moduri. Consultați întotdeauna documentația Oracle pentru versiunea specifică pe care o utilizați pentru informații detaliate despre aceste funcții și parametrii lor.

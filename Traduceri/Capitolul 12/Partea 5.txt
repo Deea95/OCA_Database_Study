@@ -1,0 +1,21 @@
+Truncarea unei tabele este o modalitate de a șterge rapid toate rândurile dintr-o tabelă fără a elimina structura tabelei în sine. De obicei, este mai eficientă decât folosirea instrucțiunii DELETE, în special atunci când doriți să eliminați toate datele dintr-un tabel.
+
+Iată sintaxa de bază pentru a trunchia o tabelă în SQL:
+```sql
+TRUNCATE TABLE nume_tabel;
+```
+Înlocuiți nume_tabel cu numele tabelei pe care doriți să o trunchiați. Iată un exemplu:
+```sql
+TRUNCATE TABLE employees;
+```
+Această instrucțiune elimină toate rândurile din tabela "employees", lăsând structura tabelei intactă.
+
+Este important să rețineți câteva lucruri despre instrucțiunea TRUNCATE:
+- Viteză: TRUNCATE este în general mai rapidă decât utilizarea DELETE pentru tabele mari, deoarece nu înregistrează ștergerile individuale de rânduri și nu generează atât de multe informații de anulare.
+- Fără clauză WHERE: Spre deosebire de instrucțiunea DELETE, TRUNCATE nu utilizează o clauză WHERE pentru a specifica condiții. Elimină toate rândurile din tabel.
+- Resetarea coloanelor de identitate și secvențelor: În unele sisteme de baze de date, trunchierea unei tabele resetează, de asemenea, coloanele de identitate sau secvențele asociate cu tabela.
+- Permisiuni: Aveți nevoie de privilegiile adecvate pentru a trunchia o tabelă. De obicei, este necesar să aveți privilegii ALTER sau DROP pe tabel.
+
+Țineți cont că, în timp ce trunchierea este o modalitate rapidă de a elimina toate datele dintr-un tabel, este ireversibilă. Dacă aveți nevoie să păstrați o copie de rezervă a datelor sau trebuie să ștergeți selectiv anumite rânduri, este posibil să doriți să folosiți instrucțiunea DELETE cu condiții adecvate.
+
+Fiți întotdeauna precaut când folosiți TRUNCATE, în special într-un mediu de producție, și asigurați-vă că aveți o copie de rezervă sau alte mijloace de recuperare a datelor, dacă este necesar.

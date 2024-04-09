@@ -1,0 +1,12 @@
+În Oracle SQL*Plus, comenzile DEFINE și VERIFY sunt folosite pentru definirea variabilelor de substituție și verificarea valorilor lor, respectiv.
+
+1. Comanda DEFINE:
+Comanda DEFINE este folosită pentru a crea și atribui valori variabilelor de substituție în SQL*Plus.
+    DEFINE nume_variabilă = valoare;
+
+2. Comanda VERIFY:
+Comanda VERIFY este folosită pentru a afișa valorile variabilelor de substituție atunci când promptul pentru variabilele de substituție este dezactivat.
+    SET VERIFY ON | OFF;
+
+Vă rugăm să rețineți că utilizarea acestor comenzi este specifică Oracle SQL*Plus, iar comportamentul lor poate fi diferit în alte medii SQL.
+Referiți-vă întotdeauna la documentația Oracle pentru versiunea pe care o utilizați pentru informații detaliate.

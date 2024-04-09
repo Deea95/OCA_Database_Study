@@ -1,0 +1,67 @@
+Într-un sistem de gestionare a bazelor de date (DBMS), controlul accesului utilizatorilor implică acordarea și gestionarea privilegiilor. Există două tipuri principale de privilegii: privilegii de sistem și privilegii de obiect.
+
+Privilegii de Sistem:
+Privilegiile de sistem sunt permisiuni care permit unui utilizator să efectueze anumite acțiuni la nivelul sistemului, cum ar fi gestionarea obiectelor bazei de date sau administrarea bazei de date în sine. Iată câteva privilegii de sistem comune:
+- CREATE SESSION:
+    Permite unui utilizator să se conecteze la baza de date.
+- CREATE TABLE:
+    Permite unui utilizator să creeze tabele noi într-o bază de date.
+- CREATE USER:
+    Oferă posibilitatea de a crea noi conturi de utilizator.
+- ALTER SYSTEM:
+    Oferă posibilitatea de a modifica setările bazei de date.
+- DROP ANY TABLE:
+    Permite unui utilizator să elimine orice tabel din baza de date.
+- Rolul DBA:
+    Utilizatorii cu rolul DBA (Administrator de bază de date) au o gamă largă de privilegii de sistem care le permit să efectueze sarcini administrative.
+
+Privilegii de Obiect:
+Privilegiile de obiect, pe de altă parte, sunt permisiuni care se aplică unor obiecte specifice de bază de date, cum ar fi tabele, vederi, proceduri sau secvențe. Iată câteva privilegii de obiect comune:
+- SELECT:
+    Permite unui utilizator să recupereze date dintr-un tabel sau vedere.
+- INSERT:
+    Oferă posibilitatea de a introduce rânduri noi într-un tabel.
+- UPDATE:
+    Permite unui utilizator să modifice rânduri existente într-un tabel.
+- DELETE:
+    Oferă posibilitatea de a elimina rânduri dintr-un tabel.
+- EXECUTE:
+    Oferă posibilitatea de a executa o procedură sau funcție stocată.
+- ALTER:
+    Permite unui utilizator să modifice structura unui tabel, cum ar fi adăugarea sau eliminarea de coloane.
+- REFERENCES:
+    Oferă posibilitatea de a crea o referință de cheie externă către o coloană.
+
+Acordarea și Revocarea Privilegiilor:
+    Acordarea Privilegiilor de Sistem:
+    GRANT CREATE SESSION TO username;
+
+    Revocarea Privilegiilor de Sistem:
+    REVOKE CREATE SESSION FROM username;
+
+    Acordarea Privilegiilor de Obiect:
+    GRANT SELECT, INSERT, UPDATE ON employees TO username;
+
+    Revocarea Privilegiilor de Obiect:
+    REVOKE SELECT, INSERT, UPDATE ON employees FROM username;
+
+Roluri:
+Rolurile sunt o modalitate de grupare a privilegiilor împreună, simplificând procesul de gestionare și atribuire a permisiunilor. De exemplu, puteți crea un rol cu privilegii specifice de sistem sau de obiect și apoi acorda acel rol utilizatorilor.
+    Crearea unui Rol:
+    CREATE ROLE manager_role;
+
+    Acordarea Privilegiilor unui Rol:
+    GRANT SELECT, INSERT, UPDATE ON employees TO manager_role;
+
+    Acordarea unui Rol unui Utilizator:
+    GRANT manager_role TO username;
+
+Auditarea Accesului:
+Administratorii bazei de date pot utiliza funcțiile de auditare pentru a urmări accesul utilizatorilor, modificările și alte activități în baza de date. Aceasta ajută la monitorizarea și asigurarea securității.
+    Activarea Auditării:
+    AUDIT SELECT TABLE, UPDATE TABLE BY scott BY ACCESS;
+
+    Vizualizarea Informațiilor de Auditare:
+    SELECT * FROM DBA_AUDIT_TRAIL WHERE USERNAME = 'SCOTT';
+
+Prin înțelegerea și gestionarea corespunzătoare a privilegiilor de sistem și de obiect, împreună cu utilizarea rolurilor și auditării, administratorii pot controla accesul utilizatorilor la un sistem de baze de date în mod eficient.

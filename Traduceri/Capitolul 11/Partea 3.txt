@@ -1,0 +1,47 @@
+În Oracle SQL, un sinonim este un alias pentru un obiect de bază de date, cum ar fi o tabelă, o vedere, o secvență sau alt sinonim. Sinonimele oferă o modalitate de simplificare a instrucțiunilor SQL și de mascare a structurii subiacente a bazei de date. Iată principalele operațiuni legate de gestionarea sinonimelor:
+
+Crearea unui sinonim:
+Pentru a crea un sinonim, poți folosi instrucțiunea CREATE SYNONYM. De exemplu:
+```sql
+CREATE SYNONYM emp_syn FOR employees;
+```
+În acest exemplu:
+- Sinonimul numit emp_syn este creat pentru tabela employees.
+- Acum, te poți referi la tabela employees folosind aliasul emp_syn.
+
+Ștergerea unui sinonim:
+Pentru a elimina un sinonim, poți folosi instrucțiunea DROP SYNONYM:
+```sql
+DROP SYNONYM emp_syn;
+```
+
+Vizualizarea informațiilor despre sinonime:
+Poți interoga vederile dicționarului de date pentru a obține informații despre sinonimele existente. De exemplu:
+```sql
+SELECT synonym_name, table_name
+  FROM user_synonyms
+ WHERE synonym_name = 'EMP_SYN';
+```
+
+Modificarea unui sinonim:
+Sinonimele nu au multe proprietăți modificabile, dar poți înlocui obiectul de bază la care se referă un sinonim folosind cuvântul cheie REPLACE:
+```sql
+CREATE OR REPLACE SYNONYM emp_syn FOR new_employees_table;
+```
+
+Sinonime publice:
+Un sinonim public este un sinonim accesibil tuturor utilizatorilor bazei de date. 
+Pentru a crea un sinonim public, ai nevoie de privilegiul CREATE PUBLIC SYNONYM. De exemplu:
+```sql
+CREATE PUBLIC SYNONYM emp_syn FOR employees;
+```
+
+Sinonimele publice sunt disponibile tuturor utilizatorilor din baza de date.
+
+Sinonime private:
+Un sinonim privat este specific schemă în care este creat. 
+Dacă nu se specifică o schemă, sinonimul este creat în schema utilizatorului curent. 
+Majoritatea sinonimelor sunt private implicit.
+
+Sinonimele sunt utile pentru simplificarea interogărilor, în special în scenarii în care numele obiectelor de bază pot să se schimbe sau când dorești să furnizezi un nume prietenos pentru un obiect. 
+Asigură-te întotdeauna că sinonimele sunt denumite și documentate corespunzător pentru claritate și ușurință în întreținere.

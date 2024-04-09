@@ -1,0 +1,48 @@
+În contextul bazelor de date relaționale, Limbajul de Definire a Datelor (DDL) este folosit pentru a gestiona tabelele și relațiile acestora. Instrucțiunile DDL sunt responsabile pentru definirea, modificarea și ștergerea structurilor de baze de date. Iată câteva instrucțiuni DDL comune legate de gestionarea tabelelor și relațiilor lor:
+
+Creare Tabel:
+Folosiți instrucțiunea CREATE TABLE pentru a defini o tabelă nouă. Includeți numele coloanelor împreună cu tipurile lor de date și orice constrângeri.
+```sql
+CREATE TABLE employees (
+    employee_id INT PRIMARY KEY,
+    first_name VARCHAR(50),
+    last_name VARCHAR(50),
+    hire_date DATE,
+    department_id INT,
+    CONSTRAINT fk_department FOREIGN KEY (department_id) REFERENCES departments(department_id)
+);
+```
+
+Modificarea Structurii Tabelei:
+Instrucțiunea ALTER TABLE este folosită pentru a modifica o tabelă existentă. Puteți adăuga, modifica sau șterge coloane.
+```sql
+ALTER TABLE employees ADD salary DECIMAL(10, 2);
+ALTER TABLE employees MODIFY last_name VARCHAR(100);
+ALTER TABLE employees DROP COLUMN hire_date;
+```
+
+Creare Index:
+Indexele îmbunătățesc viteza operațiilor de recuperare a datelor pe o tabelă. Folosiți instrucțiunea CREATE INDEX pentru a crea un index pe una sau mai multe coloane.
+```sql
+CREATE INDEX idx_last_name ON employees(last_name);
+```
+
+Creare Constrângere de Unicitate:
+O constrângere de unicitate asigură că valorile dintr-o coloană sau un grup de coloane sunt unice în cadrul întregii tabele.
+```sql
+ALTER TABLE employees ADD CONSTRAINT uc_employee_id UNIQUE (employee_id);
+```
+
+Creare Constrângere de Verificare:
+O constrângere de verificare impune o condiție asupra valorilor dintr-o coloană.
+```sql
+ALTER TABLE employees ADD CONSTRAINT chk_salary CHECK (salary > 0);
+```
+
+Ștergere Tabel:
+Folosiți instrucțiunea DROP TABLE pentru a elimina o tabelă și datele sale din baza de date. Fii atent când folosești DROP TABLE, deoarece șterge permanent tabela și datele sale.
+```sql
+DROP TABLE employees;
+```
+
+Acestea sunt câteva exemple de bază despre cum pot fi folosite instrucțiunile DDL pentru a gestiona tabelele și relațiile lor într-o bază de date relațională. Asigurați-vă că adaptați aceste exemple la schema și cerințele specifice ale bazei de date.

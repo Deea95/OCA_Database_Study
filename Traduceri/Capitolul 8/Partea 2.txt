@@ -1,0 +1,34 @@
+În Oracle SQL, o subinterogare cu mai multe înregistrări este o interogare care returnează mai mult de o singură înregistrare. Aceste subinterogări pot fi utilizate în diverse părți ale unei instrucțiuni SQL, cum ar fi clauzele SELECT, WHERE și HAVING. Iată un exemplu de utilizare a unei subinterogări cu mai multe înregistrări:
+
+Exemplu: Utilizarea unei Subinterogări cu Mai Multe Înregistrări într-o Clauză WHERE
+
+Să presupunem că ai o tabelă "departments", și vrei să recuperezi angajații ai căror salarii sunt mai mari decât salariul mediu pentru departamentul lor:
+```sql
+SELECT employee_id
+     , employee_name
+     , salary
+     , department_id
+  FROM employees
+ WHERE salary > ALL (SELECT AVG(salary) 
+                       FROM employees
+                      WHERE department_id = employees.department_id);
+```
+În acest exemplu:
+- Interogarea principală recuperează informații din tabela "employees".
+- Subinterogarea (SELECT AVG(salary) FROM employees WHERE department_id = employees.department_id) calculează salariul mediu pentru fiecare departament.
+- Cuvântul cheie ALL este folosit pentru a compara salariul fiecărui angajat cu toate salariile medii pentru departamentul lor. Angajatul este inclus în setul de rezultate dacă salariul lor este mai mare decât toate salariile medii.
+
+Poți folosi, de asemenea, subinterogări cu mai multe înregistrări în alte contexte. De exemplu, le poți folosi într-o clauză SELECT pentru a recupera valori pe baza unei condiții:
+```sql
+SELECT employee_id
+     , employee_name
+     , (SELECT MAX(salary) 
+          FROM employees 
+         WHERE department_id = employees.department_id) AS max_department_salary
+  FROM employees;
+```
+În acest exemplu, interogarea principală recuperează informații despre angajat, iar subinterogarea calculează salariul maxim pentru fiecare departament. Rezultatul include ID-ul angajatului, numele angajatului și salariul maxim pentru departamentul angajatului.
+
+Subinterogările cu mai multe înregistrări îți permit să faci comparații sau calcule pe mai multe înregistrări într-o subinterogare și sunt utile în scenarii în care trebuie să compari o valoare cu mai multe valori.
+
+Asigură-te întotdeauna că subinterogările tale cu mai multe înregistrări sunt utilizate în contexte în care sunt așteptate mai multe valori și înțelegi cum se raportează rezultatele subinterogării la interogarea principală.

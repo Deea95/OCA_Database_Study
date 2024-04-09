@@ -1,0 +1,40 @@
+Când lucrați cu date în diferite fusuri orare în Oracle SQL, este important să fiți atenți la conversiile de fus orar și să utilizați funcțiile adecvate pentru dată și timestamp. Iată exemple despre cum să gestionați datele în diferite fusuri orare folosind CURRENT_DATE, CURRENT_TIMESTAMP și LOCALTIMESTAMP:
+
+1. CURRENT_DATE:
+Funcția CURRENT_DATE returnează data curentă în fusul orar al sesiunii.
+    SELECT CURRENT_DATE AS data_curenta
+      FROM dual;
+
+2. CURRENT_TIMESTAMP:
+Funcția CURRENT_TIMESTAMP returnează data și ora curente în fusul orar al sesiunii.
+    SELECT CURRENT_TIMESTAMP AS data_ora_curenta
+      FROM dual;
+
+3. LOCALTIMESTAMP:
+Funcția LOCALTIMESTAMP returnează, de asemenea, data și ora curente, dar le returnează în fusul orar al sesiunii.
+    SELECT LOCALTIMESTAMP AS data_ora_locala
+      FROM dual;
+
+4. Manipularea Diferitelor Fusuri Orare:
+Pentru a lucra cu date în diferite fusuri orare, puteți folosi clauza AT TIME ZONE pentru a converti un timestamp într-un alt fus orar.
+    SELECT order_id, order_date
+      FROM orders
+     WHERE order_date > CURRENT_TIMESTAMP AT TIME ZONE 'UTC';
+
+5. Conversia într-un Anumit Fus Orar:
+Puteți converti explicit un timestamp într-un anumit fus orar folosind funcția FROM_TZ.
+    SELECT order_id, FROM_TZ(order_date, 'America/New_York') AS order_date_ny
+      FROM orders;
+
+6. Lucrul cu Fusul Orar al Sesiunii:
+Puteți schimba fusul orar al sesiunii folosind instrucțiunea ALTER SESSION.
+    ALTER SESSION SET TIME_ZONE = 'UTC';
+    SELECT CURRENT_TIMESTAMP AS data_ora_curenta_utc
+      FROM dual;
+
+7. Extracția Informațiilor despre Fusul Orar:
+Puteți extrage informații despre fusul orar folosind funcția EXTRACT.
+    SELECT order_id, EXTRACT(TIMEZONE_HOUR FROM order_date) AS offset_fus_orar
+      FROM orders;
+
+Aceste exemple demonstrează cum să lucrați cu funcțiile de dată și timestamp în diferite fusuri orare în Oracle SQL. Luați întotdeauna în considerare informațiile despre fusul orar atunci când manipulați date și ora pentru a asigura rezultate precise și consistente. Consultați întotdeauna documentația Oracle pentru versiunea specifică pe care o utilizați pentru informații detaliate despre aceste funcții și parametrii lor.

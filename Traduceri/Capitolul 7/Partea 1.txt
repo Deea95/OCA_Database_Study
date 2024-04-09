@@ -1,0 +1,37 @@
+Un self-join în SQL este o uniune obișnuită, dar tabela este unită cu ea însăși. Este deosebit de util atunci când doriți să combinați rânduri din aceeași tabelă pe baza unei coloane asociate. Iată un exemplu de utilizare a unui self-join în Oracle SQL:
+
+Să luăm în considerare un scenariu în care aveți o tabelă "employees", iar fiecare angajat are un manager care este, de asemenea, un angajat. Coloana "manager_id" din tabela "employees" se referă la "employee_id" al managerului.
+Exemplu: Self-Join pentru a Recupera Angajații și Managerii Lor
+```sql
+SELECT e.employee_id
+     , e.employee_name
+     , m.employee_name AS manager_name
+  FROM employees e
+  LEFT JOIN employees m ON e.manager_id = m.employee_id;
+```
+În acest exemplu:
+- Aliasul de tabel e este folosit pentru informațiile despre angajați.
+- Aliasul de tabel m este folosit pentru informațiile despre manageri.
+- LEFT JOIN este utilizat pentru a include toți angajații, chiar și cei care s-ar putea să nu aibă un manager.
+- Condiția de uniune este e.manager_id = m.employee_id, ceea ce înseamnă că potrivim "manager_id" al angajaților cu "employee_id" al managerilor.
+- Dacă un angajat nu are un manager (de exemplu, un CEO), "manager_name" va fi NULL.
+
+Exemplu Mai Complex: Afișarea Ierarhiei Angajaților
+Dacă doriți să afișați ierarhia angajaților și a managerilor lor într-o structură ierarhică, puteți utiliza o clauză CONNECT BY în Oracle. Iată un exemplu:
+```sql
+SELECT employee_id
+     , employee_name
+     , manager_id
+     , LEVEL
+  FROM employees
+ START WITH manager_id IS NULL
+CONNECT BY PRIOR employee_id = manager_id
+ORDER BY LEVEL, employee_id;
+```
+În această interogare:
+- Clauza START WITH specifică rădăcina ierarhiei (angajații fără manageri).
+- Clauza CONNECT BY definește relația ierarhică între "employee_id" și "manager_id".
+- Cuvântul cheie PRIOR se referă la rândul părinte din ierarhie.
+- Pseudocoloana LEVEL indică nivelul ierarhiei.
+
+Aceste exemple prezintă utilizarea self-join-urilor în Oracle SQL pentru scenarii în care există o relație ierarhică în cadrul aceleiași tabele. Structura specifică a bazei de date și relațiile între coloane vor determina modul în care aplicați self-join-urile în interogările dvs. Consultați întotdeauna documentația Oracle pentru versiunea specifică pe care o utilizați pentru informații detaliate despre self-join-uri și interogările ierarhice.

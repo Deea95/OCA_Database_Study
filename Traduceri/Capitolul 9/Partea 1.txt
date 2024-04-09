@@ -1,0 +1,67 @@
+În Oracle SQL, operatorii de set (UNION, INTERSECT, MINUS) îți permit să combini rezultatele mai multor instrucțiuni SELECT. 
+Pentru a folosi operatorii de set, instrucțiunile SELECT implicate trebuie să aibă coloane compatibile în ceea ce privește numărul și tipurile de date. 
+Iată exemple de utilizare a operatorilor de set pentru a potrivi instrucțiunile SELECT:
+
+1. Operatorul UNION:
+Operatorul UNION combină rezultatele a două sau mai multe instrucțiuni SELECT, eliminând duplicatelor.
+```sql
+-- Exemplu 1: UNION cu coloane similare
+SELECT employee_id, employee_name FROM employees
+UNION
+SELECT manager_id, manager_name FROM managers;
+
+-- Exemplu 2: UNION cu coloane diferite (necesită aliasare)
+SELECT employee_id, employee_name FROM employees
+UNION
+SELECT department_id AS employee_id, department_name AS employee_name FROM departments;
+```
+
+2. Operatorul INTERSECT:
+Operatorul INTERSECT returnează rândurile comune între două instrucțiuni SELECT.
+```sql
+SELECT employee_id, employee_name FROM employees
+INTERSECT
+SELECT manager_id, manager_name FROM managers;
+```
+
+3. Operatorul MINUS:
+Operatorul MINUS returnează rândurile din prima instrucțiune SELECT care nu sunt prezente în a doua instrucțiune SELECT.
+```sql
+SELECT employee_id, employee_name FROM employees
+MINUS
+SELECT manager_id, manager_name FROM managers;
+```
+
+4. Potrivirea Instrucțiunilor SELECT cu Operatorii de Set:
+Asigură-te că instrucțiunile SELECT au coloane compatibile în ceea ce privește numărul și tipurile de date.
+```sql
+SELECT employee_id, employee_name FROM employees
+UNION
+SELECT manager_id, manager_name FROM managers WHERE hire_date > TO_DATE('2022-01-01', 'YYYY-MM-DD');
+```
+
+5. Aplicarea Operatorilor de Set la Mai Mult de Două Interogări:
+Poți folosi parantezele pentru a controla ordinea de evaluare atunci când aplici operatorii de set la mai mult de două interogări.
+```sql
+(SELECT employee_id, employee_name FROM employees)
+UNION
+(SELECT manager_id, manager_name FROM managers)
+MINUS
+(SELECT contractor_id, contractor_name FROM contractors);
+```
+
+6. Utilizarea Operatorilor de Set în Clauza WHERE:
+Poți folosi operatorii de set în interiorul clauzei WHERE pentru condiții mai complexe.
+```sql
+SELECT employee_id
+     , employee_name 
+  FROM employees 
+ WHERE employee_id IN (SELECT manager_id 
+                         FROM managers 
+                        WHERE hire_date > SYSDATE - 365);
+```
+
+Aceste exemple demonstrează cum să folosești operatorii de set pentru a potrivi instrucțiunile SELECT în Oracle SQL. 
+Atunci când folosești operatorii de set, asigură-te întotdeauna că instrucțiunile SELECT implicate au coloane compatibile. 
+În plus, fii atent la considerațiile legate de performanță, în special cu seturi de date mari. 
+Consultă întotdeauna documentația Oracle pentru versiunea specifică pe care o folosești pentru informații detaliate despre operatorii de set și modul lor de utilizare.

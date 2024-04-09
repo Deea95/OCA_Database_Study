@@ -1,0 +1,26 @@
+Crearea tabelelor este un aspect fundamental al proiectării și gestionării bazelor de date. În SQL, Limbajul de Definire a Datelor (DDL) este folosit pentru a crea tabele.
+
+Iată un exemplu de bază despre cum puteți crea o tabelă:
+```sql
+CREATE TABLE employees (
+    employee_id INT PRIMARY KEY,
+    first_name VARCHAR(50),
+    last_name VARCHAR(50),
+    hire_date DATE,
+    department_id INT
+);
+```
+
+Să descompunem acest exemplu:
+- `CREATE TABLE`: Aceasta este instrucțiunea SQL folosită pentru a crea o nouă tabelă.
+- `employees`: Acesta este numele tabelei pe care o creați.
+- `( ... )`: În interiorul parantezelor, listați coloanele tabelei împreună cu tipurile lor de date.
+- `employee_id INT PRIMARY KEY`: Această linie definește o coloană numită `employee_id` cu tipul de date `INT` (integer) și specifică faptul că este cheia primară a tabelei. Cheia primară identifică în mod unic fiecare rând din tabel.
+- `first_name VARCHAR(50)`: Această linie definește o coloană numită `first_name` cu tipul de date `VARCHAR(50)` (șir de caractere variabile de lungime maximă 50).
+- `last_name VARCHAR(50)`: Similar cu linia anterioară, aceasta definește o coloană pentru numele de familie.
+- `hire_date DATE`: Această linie definește o coloană numită `hire_date` cu tipul de date `DATE` pentru stocarea datelor.
+- `department_id INT`: Această linie definește o coloană numită `department_id` cu tipul de date `INT` pentru stocarea informațiilor despre departament.
+
+Acesta este un exemplu simplu, iar structura reală a tabelelor dvs. va depinde de cerințele bazei de date. Puteți adăuga, de asemenea, constrângeri (cum ar fi NOT NULL, UNIQUE și FOREIGN KEY) pentru a impune integritatea datelor și relațiile între tabele.
+
+Nu uitați să ajustați numele coloanelor, tipurile de date și constrângerile în funcție de nevoile specifice ale aplicației și sistemului de gestiune a bazelor de date pe care îl utilizați.

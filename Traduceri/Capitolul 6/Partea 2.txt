@@ -1,0 +1,62 @@
+În Oracle SQL, funcțiile de grup sunt folosite pentru a efectua operații pe seturi de rânduri și pentru a returna un singur rezultat. Iată exemple de utilizare a câtorva funcții de grup comune:
+
+1. Funcția COUNT:
+Funcția COUNT este folosită pentru a număra numărul de rânduri dintr-un set.
+    SELECT COUNT(*) AS total_angajati
+      FROM employees;
+
+2. Funcția SUM:
+Funcția SUM este folosită pentru a calcula suma unei coloane numerice.
+    SELECT department_id, SUM(salary) AS total_salariu
+      FROM employees
+     GROUP BY department_id;
+
+Această interogare returnează salariul total pentru fiecare departament.
+3. Funcția AVG:
+Funcția AVG calculează valoarea medie a unei coloane numerice.
+    SELECT department_id, AVG(salary) AS salariu_mediu
+      FROM employees
+     GROUP BY department_id;
+
+4. Funcțiile MAX și MIN:
+Funcțiile MAX și MIN returnează, respectiv, valorile maxime și minime dintr-o coloană.
+    SELECT department_id, MAX(salary) AS max_salariu, MIN(salary) AS min_salariu
+      FROM employees
+     GROUP BY department_id;
+
+5. GROUP_CONCAT (LISTAGG în Oracle 11g și ulterior):
+Funcția LISTAGG în Oracle concatenează valorile din mai multe rânduri într-un singur șir de caractere.
+    SELECT department_id
+         , LISTAGG(employee_name, ', ') WITHIN GROUP (ORDER BY employee_name) AS lista_angajati
+      FROM employees
+     GROUP BY department_id;
+
+6. SETURI DE GRUPURI:
+SETURILE DE GRUPURI vă permit să specificați mai multe criterii de grupare într-o singură interogare.
+    SELECT department_id
+         , job_id
+         , COUNT(*) AS numar_angajati
+      FROM employees
+     GROUP BY GROUPING SETS ((department_id)
+                          , (job_id)
+                          , ());
+
+7. ROLLUP:
+ROLLUP este folosit pentru a crea subtotaluri și totaluri generale pentru un set de coloane.
+    SELECT department_id
+         , job_id
+         , COUNT(*) AS numar_angajati
+      FROM employees
+     GROUP BY ROLLUP (department_id
+                    , job_id);
+
+8. CUBE:
+CUBE generează toate subtotalurile posibile și totalurile generale pentru un set de coloane.
+    SELECT department_id
+         , job_id
+         , COUNT(*) AS numar_angajati
+      FROM employees
+     GROUP BY CUBE (department_id
+                  , job_id);
+
+Aceste exemple demonstrează utilizarea diferitelor funcții de grup în Oracle SQL. Funcțiile de grup sunt instrumente puternice pentru rezumarea și agregarea datelor într-o bază de date relațională. Consultați întotdeauna documentația Oracle pentru versiunea specifică pe care o utilizați pentru informații detaliate despre funcțiile de grup și modul lor de utilizare.

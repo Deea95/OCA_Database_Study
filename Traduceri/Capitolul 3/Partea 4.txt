@@ -1,0 +1,20 @@
+Substitution variables nu sunt o caracteristică standard a SQL-ului, dar sunt folosite în mod obișnuit în unele medii de bază de date, cum ar fi Oracle SQLPlus. Variabilele de substituție sunt folosite pentru a înlocui locații cu valori reale într-un script sau comandă SQL.
+Iată un exemplu de utilizare a variabilelor de substituție în Oracle SQLPlus:
+
+Exemplu în Oracle SQL*Plus:
+
+Definirea unei variabile de substituție
+    ACCEPT department_id CHAR PROMPT 'Introduceți ID-ul departamentului: ';
+
+Utilizarea variabilei de substituție într-o interogare SQL
+    SELECT employee_id, first_name, last_name
+      FROM employees
+     WHERE department_id = '&department_id';
+
+În acest exemplu:
+
+    ACCEPT: Definește o variabilă de substituție numită department_id și îi cere utilizatorului să introducă o valoare pentru aceasta.
+    &department_id: Folosește variabila de substituție în interogarea SQL. Când scriptul rulează, SQL*Plus îi cere utilizatorului valoarea department_id-ului, iar valoarea introdusă este înlocuită în interogare.
+
+Țineți cont că utilizarea variabilelor poate varia între diferite sisteme de bază de date, iar variabilele de substituție, așa cum sunt prezentate în exemplul Oracle SQL*Plus, sunt specifice anumitor medii.
+Consultați întotdeauna documentația sistemului de bază de date specific pe care-l utilizați pentru sintaxa și utilizarea corectă.

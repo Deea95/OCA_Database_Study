@@ -1,0 +1,52 @@
+Acordarea privilegiilor pe tabele într-o bază de date relațională este un aspect fundamental al controlului accesului utilizatorilor. Iată câteva instrucțiuni SQL comune pentru acordarea privilegiilor pe tabele:
+
+Privilegii de Obiecte pe Tabele:
+Acordarea Privilegiului SELECT:
+Permite unui utilizator să recupereze date dintr-un tabel.
+
+    GRANT SELECT ON table_name TO username;
+
+Acordarea Privilegiului INSERT:
+Permite unui utilizator să introducă rânduri noi într-un tabel.
+    GRANT INSERT ON table_name TO username;
+
+Acordarea Privilegiului UPDATE:
+Permite unui utilizator să modifice rânduri existente într-un tabel.
+    GRANT UPDATE ON table_name TO username;
+
+Acordarea Privilegiului DELETE:
+Permite unui utilizator să elimine rânduri dintr-un tabel.
+    GRANT DELETE ON table_name TO username;
+
+Acordarea Tuturor Privilegiilor:
+Conferă toate privilegiile disponibile pe un tabel.
+    GRANT ALL ON table_name TO username;
+
+Acordarea Privilegiilor cu Clauza OPTION:
+Atunci când acordați privilegii, puteți utiliza clauza WITH OPTION pentru a permite beneficiarului să acorde ulterior acele privilegii altor utilizatori. De exemplu:
+    GRANT SELECT, INSERT ON table_name TO username WITH GRANT OPTION;
+
+Acordarea Privilegiilor către Roluri:
+În loc să acordați privilegii direct utilizatorilor individuali, puteți acorda privilegii rolurilor și apoi atribui acele roluri utilizatorilor.
+    Crearea unui Rol:
+    CREATE ROLE role_name;
+
+    Acordarea Privilegiilor către un Rol:
+    GRANT SELECT, INSERT ON table_name TO role_name;
+
+    Acordarea Rolului unui Utilizator:
+    GRANT role_name TO username;
+
+Revocarea Privilegiilor:
+Pentru a revoca privilegiile acordate anterior, puteți utiliza instrucțiunea REVOKE.
+    Revocarea Privilegiului SELECT:
+    REVOKE SELECT ON table_name FROM username;
+
+    Revocarea Tuturor Privilegiilor:
+    REVOKE ALL ON table_name FROM username;
+
+Vizualizarea Privilegiilor Acordate:
+Pentru a vizualiza privilegiile acordate pe un tabel, puteți interoga vederile USER_TAB_PRIVS sau ALL_TAB_PRIVS.
+    SELECT * FROM USER_TAB_PRIVS WHERE TABLE_NAME = 'table_name';
+
+Nu uitați să înlocuiți username și table_name cu valorile adecvate în funcție de schema bazei de date și conturile de utilizator. Acordați întotdeauna privilegiile minime necesare utilizatorilor pentru a asigura principiul celui mai mic privilegiu și pentru a îmbunătăți securitatea.

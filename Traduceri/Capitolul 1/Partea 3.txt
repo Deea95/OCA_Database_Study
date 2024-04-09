@@ -1,0 +1,53 @@
+În SQL, instrucțiunea SELECT este folosită pentru a recupera date din una sau mai multe tabele. Diversele clauze din instrucțiunea SELECT pot fi corelate cu componente ale unui Diagramă Entitate-Relație (ERD). Să explorăm cum se corelează câteva clauze SELECT cheie din SQL cu elementele unui ERD:
+
+   Clauza FROM:
+  
+    SQL: Specifică tabelele din care să se recupereze datele.
+    ERD: Se referă la entitățile din ERD. Fiecare tabel din clauza FROM corespunde unei entități.
+
+   Clauza JOIN:
+  
+    SQL: Combină rânduri din două sau mai multe tabele bazate pe o coloană corelată.
+    ERD: Reflectă relațiile între entități în ERD. Relațiile de cheie externă stabilesc modul în care sunt unite tabelele.
+
+   Clauza WHERE:
+  
+    SQL: Filtrează rândurile bazate pe condițiile specificate.
+    ERD: Se referă la condițiile în care entitățile sunt conectate în ERD. Reprezintă criteriile de selectare a înregistrărilor corelate.
+
+   Clauza SELECT:
+  
+    SQL: Specifică coloanele care trebuie recuperate din tabele.
+    ERD: Corespunde atributelor unei entități. Clauza SELECT definește care atribute (coloane) sunt selectate din entități (tabele).
+
+   Clauza GROUP BY:
+  
+    SQL: Gruparea rândurilor bazate pe valori comune în coloanele specificate.
+    ERD: Corelează cu conceptul de grupare a înregistrărilor sau entităților corelate în funcție de anumite atribute.
+
+   Clauza HAVING:
+  
+    SQL: Filtrează rezultatele unei clauze GROUP BY bazate pe o condiție specificată.
+    ERD: Similară cu clauza WHERE, dar aplicată după grupare. Este ca și cum ai specifica condiții pe datele agregate.
+
+   Clauza ORDER BY:
+  
+    SQL: Sortează setul de rezultate bazat pe coloanele specificate.
+    ERD: Nu este direct legată de un ERD, dar poate fi considerată analogă prezentării datelor într-o anumită ordine pentru o mai bună înțelegere.
+
+   Cuvântul DISTINCT:
+  
+    SQL: Elimină rândurile duplicate din setul de rezultate.
+    ERD: Abordează constrângerea de unicitate asupra entităților și atributelor acestora. Se asigură că fiecare instanță de entitate este distinctă.
+
+   Subinterogări:
+  
+    SQL: O interogare încorporată într-o altă interogare.
+    ERD: Se referă la relații sau condiții mai complexe implicate în mai multe entități. Subinterogările pot reprezenta relații încorporate.
+
+   Funcțiile Aggregate (de exemplu, COUNT, SUM, AVG):
+
+    SQL: Efectuează calcule pe un set de valori.
+    ERD: Se aliniază cu conceptul de sumarizare sau agregare a datelor legate de entități.
+
+Înțelegerea modului în care aceste clauze SELECT din SQL se corelează cu componentele ERD este esențială pentru proiectarea interogărilor eficiente care recuperează cu exactitate informațiile dorite dintr-o bază de date relațională. De asemenea, ajută la traducerea cerințelor de afaceri în instrucțiuni SQL care reflectă modelul de date subiacent.

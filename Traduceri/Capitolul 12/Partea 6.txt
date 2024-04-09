@@ -1,0 +1,43 @@
+Tabelele temporare sunt tabele folosite pentru a stoca date temporare și sunt deosebit de utile în scenariile în care trebuie să stocați și să procesați rezultate intermediare în cadrul unei sesiuni. În SQL, tabelele temporare sunt create în mod obișnuit în așa fel încât să existe doar pe durata unei sesiuni de bază de date.
+Iată un ghid de bază privind crearea și utilizarea tabelelor temporare:
+
+Crearea unei Tabele Temporare:
+În SQL, sintaxa pentru crearea unei tabele temporare poate varia între sistemele de baze de date. Cu toate acestea, o abordare comună este de a folosi instrucțiunea CREATE TEMPORARY TABLE sau CREATE TABLE cu un modificator specific pentru a indica natura temporară a tabelei. Iată un exemplu folosind sintaxa CREATE TEMPORARY TABLE:
+```sql
+CREATE TEMPORARY TABLE temp_employees (
+    employee_id INT,
+    first_name VARCHAR(50),
+    last_name VARCHAR(50)
+);
+```
+
+Inserarea Datelor într-o Tabelă Temporară:
+Puteți insera date într-o tabelă temporară folosind instrucțiunea INSERT INTO, la fel ca în cazul tabelelor obișnuite:
+```sql
+INSERT INTO temp_employees (employee_id, first_name, last_name)
+VALUES (1, 'John', 'Doe'),
+       (2, 'Jane', 'Smith');
+```
+
+Interogarea și Utilizarea Tabelei Temporare:
+Odată ce tabela temporară este creată și populată, puteți efectua interogări și operațiuni pe ea la fel ca și în cazul oricărei alte tabele:
+```sql
+SELECT * FROM temp_employees;
+```
+
+Puteți folosi, de asemenea, tabela temporară în alăturări, subinterogări sau alte operațiuni în cadrul aceleiași sesiuni.
+
+Ștergerea Tabelei Temporare:
+Tabelele temporare sunt șterse automat când sesiunea se încheie, dar le puteți șterge în mod explicit folosind instrucțiunea DROP TABLE:
+```sql
+DROP TEMPORARY TABLE temp_employees;
+```
+
+Considerații:
+- Domeniu de aplicare: Tabelele temporare sunt de obicei vizibile și accesibile doar în cadrul sesiunii în care sunt create.
+- Sistemele de baze de date diferite pot avea variații în modul în care tratează tabelele temporare, așa că consultați documentația pentru baza de date specifică.
+- Permisiuni: Asigurați-vă că utilizatorul sau rolul care creează tabela temporară are permisiunile necesare.
+- Denumire: Tabelele temporare au adesea o convenție de denumire, cum ar fi un prefix "temp_", pentru a le distinge de tabelele obișnuite.
+- Durata datelor: Datele dintr-o tabelă temporară sunt de obicei disponibile doar pe durata sesiunii, dar acest comportament poate varia în funcție de sistemul de baze de date.
+
+Consultați întotdeauna documentația sistemului specific de baze de date cu care lucrați pentru sintaxa și comportamentul precise legate de tabelele temporare.

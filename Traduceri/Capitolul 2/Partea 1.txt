@@ -1,0 +1,30 @@
+În SQL, aliasurile de coloană oferă o modalitate de a redenumi coloanele sau expresiile din setul de rezultate al unei interogări. Acest lucru este deosebit de util pentru a face ieșirea mai ușor de citit sau atunci când se lucrează cu expresii complexe. Iată cum puteți utiliza aliasurile de coloană într-o instrucțiune SELECT:
+
+1. Utilizare de bază:
+    SELECT nume_coloană AS nume_alias
+      FROM nume_tabel;
+
+2. Aliasuri pentru Tabele (Aliasuri de Tabele):
+    SELECT t.nume_coloană AS nume_alias
+      FROM nume_tabel AS t;
+
+3. Utilizarea Aliasurilor în Clauza WHERE:
+    SELECT nume_coloană AS nume_alias
+      FROM nume_tabel
+     WHERE nume_alias = 'o_valoare';
+
+4. Aliasuri în Clauza ORDER BY:
+    SELECT nume_produs, pret_unitar * 0.9 AS pret_redus
+      FROM produse
+    ORDER BY pret_redus DESC;
+
+5. Aliasuri pentru Subinterogări:
+    SELECT id_angajat
+         , prenume
+         , nume
+         , (SELECT MAX(salariu) 
+              FROM salarii 
+             WHERE id_angajat = e.id_angajat) AS salariu_maxim
+      FROM angajați e;
+
+Aliasurile de coloană fac setul de rezultate mai ușor de citit, în special atunci când se lucrează cu interogări complexe sau când se prezintă date utilizatorilor finali. Ele pot fi utilizate în liste SELECT, în clauze WHERE, în clauze ORDER BY și în alte părți ale interogării SQL.

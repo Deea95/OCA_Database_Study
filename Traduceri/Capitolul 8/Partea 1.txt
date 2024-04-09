@@ -1,0 +1,36 @@
+În Oracle SQL, o subinterogare cu o singură înregistrare este o interogare care returnează doar o singură înregistrare și o singură coloană. Subinterogările cu o singură înregistrare pot fi utilizate în diverse părți ale unei instrucțiuni SQL, cum ar fi clauzele SELECT, WHERE și HAVING, pentru a rezolva interogări.
+
+Iată un exemplu de utilizare a unei subinterogări cu o singură înregistrare:
+
+Exemplu: Utilizarea unei Subinterogări cu o Singură Înregistrare într-o Instrucțiune SELECT
+
+Să presupunem că ai o tabelă "salaries", și vrei să recuperezi angajații ai căror salarii sunt mai mari decât salariul mediu pentru departamentul lor:
+
+```sql
+SELECT employee_id
+     , employee_name
+     , salary
+     , (SELECT AVG(salary) 
+          FROM salaries s2 
+         WHERE s2.department_id = s1.department_id) AS avg_department_salary
+  FROM salaries s1;
+```
+
+În acest exemplu:
+- Interogarea principală recuperează informații din tabela "salaries" (denumită s1).
+- Subinterogarea (SELECT AVG(salary) FROM salaries s2 WHERE s2.department_id = s1.department_id) calculează salariul mediu pentru departamentul fiecărui angajat din interogarea principală.
+- Rezultatul include ID-ul angajatului, numele angajatului, salariul și salariul mediu pentru departamentul angajaților.
+
+Poți utiliza subinterogări cu o singură înregistrare și în alte contexte. De exemplu, poți folosi o subinterogare cu o singură înregistrare într-o clauză WHERE pentru a filtra înregistrările pe baza unei condiții specifice:
+
+```sql
+SELECT employee_id
+     , employee_name
+     , salary
+  FROM employees
+ WHERE salary > (SELECT AVG(salary) FROM employees);
+```
+
+În acest exemplu, interogarea principală recuperează angajații ai căror salarii sunt mai mari decât salariul mediu general din tabela "employees".
+
+Subinterogările cu o singură înregistrare sunt instrumente puternice pentru rezolvarea interogărilor, oferind o modalitate dinamică de a incorpora valori calculate sau derivate în instrucțiunile tale SQL. Asigură-te întotdeauna că subinterogările tale returnează doar o singură înregistrare și o singură coloană atunci când le folosești în contexte în care se așteaptă o singură valoare.

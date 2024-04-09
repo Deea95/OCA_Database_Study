@@ -1,0 +1,18 @@
+În Oracle SQL, funcțiile de conversie TO_CHAR, TO_NUMBER și TO_DATE sunt folosite pentru a converti în mod explicit valori dintr-un tip de date în altul. Iată exemple de cum să folosiți fiecare funcție:
+
+1. TO_CHAR:
+Funcția TO_CHAR convertește o valoare într-un șir de caractere.
+    SELECT TO_CHAR(salary, '$999,999.99') AS salary_formatat
+      FROM employees;
+
+2. TO_NUMBER:
+Funcția TO_NUMBER convertește un șir de caractere într-un număr.
+    SELECT employee_id, TO_NUMBER('12345') AS numeric_employee_id
+      FROM employees;
+
+3. TO_DATE:
+Funcția TO_DATE convertește un șir de caractere într-o dată.
+    SELECT hire_date, TO_DATE('2022-01-01', 'YYYY-MM-DD') AS data_convertită
+      FROM employees;
+
+Aceste funcții de conversie oferă flexibilitate atunci când lucrați cu diferite tipuri de date în Oracle SQL. Consultați întotdeauna documentația Oracle pentru versiunea specifică pe care o utilizați pentru informații detaliate despre aceste funcții și parametrii lor.

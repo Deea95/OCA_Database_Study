@@ -1,0 +1,61 @@
+În Oracle SQL, poți folosi diverse tipuri de uniuni pentru a recupera date din mai multe tabele. Iată exemple ale diferitelor tipuri de uniuni:
+
+1. INNER JOIN:
+Cuvântul cheie INNER JOIN selectează înregistrările care au valori potrivite în ambele tabele.
+```sql
+SELECT employees.employee_id
+     , employees.employee_name
+     , departments.department_name
+  FROM employees
+  INNER JOIN departments ON employees.department_id = departments.department_id;
+```
+
+2. LEFT JOIN (sau LEFT OUTER JOIN):
+Cuvântul cheie LEFT JOIN returnează toate înregistrările din tabela stângă (employees) și înregistrările potrivite din tabela dreaptă (departments). Rezultatul este NULL din partea dreaptă dacă nu există o potrivire.
+```sql
+SELECT employees.employee_id
+     , employees.employee_name
+     , departments.department_name
+  FROM employees
+  LEFT JOIN departments ON employees.department_id = departments.department_id;
+```
+
+3. RIGHT JOIN (sau RIGHT OUTER JOIN):
+Cuvântul cheie RIGHT JOIN returnează toate înregistrările din tabela dreaptă (departments) și înregistrările potrivite din tabela stângă (employees). Rezultatul este NULL din partea stângă când nu există o potrivire.
+```sql
+SELECT employees.employee_id
+     , employees.employee_name
+     , departments.department_name
+  FROM employees
+  RIGHT JOIN departments ON employees.department_id = departments.department_id;
+```
+
+4. FULL JOIN (sau FULL OUTER JOIN):
+Cuvântul cheie FULL JOIN returnează toate înregistrările când există o potrivire în înregistrările fie din stânga (employees), fie din dreapta (departments).
+```sql
+SELECT employees.employee_id
+     , employees.employee_name
+     , departments.department_name
+  FROM employees
+  FULL JOIN departments ON employees.department_id = departments.department_id;
+```
+
+5. CROSS JOIN:
+Cuvântul cheie CROSS JOIN returnează produsul cartezian al celor două tabele, combinând fiecare rând din prima tabelă cu fiecare rând din a doua tabelă.
+```sql
+SELECT employees.employee_id, employees.employee_name, departments.department_name
+  FROM employees
+  CROSS JOIN departments;
+```
+
+6. SELF JOIN:
+Un SELF JOIN este o uniune obișnuită, dar tabela este unită cu ea însăși. Este util pentru structuri ierarhice.
+```sql
+SELECT e1.employee_id
+     , e1.employee_name
+     , e2.employee_name AS manager_name
+  FROM employees e1
+  LEFT JOIN employees e2 ON e1.manager_id = e2.employee_id;
+```
+
+Aceste exemple ilustrează utilizarea diferitelor tipuri de uniuni în Oracle SQL. Alegerea tipului de uniune de folosit depinde de cerințele specifice ale interogării tale și de relația dintre tabele. Consultă întotdeauna documentația Oracle pentru versiunea specifică pe care o utilizezi pentru informații detaliate despre uniuni și modul lor de folosire.

@@ -1,0 +1,48 @@
+Gestionarea tranzacțiilor în bazele de date este un aspect crucial al managementului bazelor de date. În Oracle SQL, instrucțiunile limbajului de manipulare a datelor (DML) sunt folosite pentru a gestiona datele din tabele, iar tranzacțiile sunt folosite pentru a asigura consistența și integritatea bazei de date. Tranzacțiile constau în mod tipic din una sau mai multe instrucțiuni SQL care sunt executate ca o singură unitate de lucru. Conceptele cheie legate de gestionarea tranzacțiilor includ:
+
+1. Instrucțiuni de control al tranzacțiilor:
+    Oracle SQL oferă trei instrucțiuni principale de control al tranzacțiilor: COMMIT, ROLLBACK și SAVEPOINT.
+    COMMIT: Comite tranzacția curentă, făcând modificările permanente.
+    ROLLBACK: Anulează modificările făcute în tranzacția curentă și încheie tranzacția.
+    SAVEPOINT: Setează un punct de salvare în cadrul unei tranzacții la care poți reveni mai târziu.
+
+2. Auto-commit:
+    În mod implicit, Oracle SQL operează în modul de auto-commit, în care fiecare instrucțiune SQL individuală este tratată ca o tranzacție separată care este automat comisă.
+    Pentru a dezactiva auto-commit-ul și a iniția o tranzacție explicit, poți folosi instrucțiunea BEGIN TRANSACTION.
+
+3. Comiterea unei tranzacții:
+    Instrucțiunea COMMIT este folosită pentru a salva permanent modificările făcute în cadrul tranzacției curente.
+    Este important să comiți o tranzacție pentru a face modificările vizibile altor utilizatori și aplicații.
+    Sintaxă: COMMIT;
+
+4. Anularea unei tranzacții:
+    Instrucțiunea ROLLBACK este folosită pentru a anula modificările făcute în cadrul tranzacției curente.
+    Este folosită în mod obișnuit în scenarii de gestionare a erorilor sau pentru a anula modificările făcute în cazul unei probleme.
+    Sintaxă: ROLLBACK;
+
+5. Puncte de salvare:
+    Punctele de salvare îți permit să marchezi un punct în cadrul unei tranzacții la care poți reveni mai târziu.
+    Sunt utile pentru anulări parțiale sau gestionarea erorilor fără a anula întreaga tranzacție.
+    Sintaxa pentru a seta un punct de salvare: SAVEPOINT nume_punct;
+    Sintaxa pentru a reveni la un punct de salvare: ROLLBACK TO nume_punct;
+
+6. Anulări implicite:
+    Anumite operații cauzează automat o anulare implicită, cum ar fi instrucțiunile DDL (Data Definition Language).
+    Exemple de instrucțiuni DDL includ CREATE, ALTER și DROP.
+
+Exemplu: Gestionarea Tranzacțiilor
+    BEGIN
+       -- Începeți o tranzacție explicit
+       -- Efectuați operațiile DML
+
+       -- Verificați erorile și comiteți sau anulați în consecință
+       IF (fără_erori) THEN
+          COMMIT; -- Comite modificările
+       ELSE
+          ROLLBACK; -- Anulează modificările
+       END IF;
+    END;
+
+Acest exemplu demonstrează utilizarea controlului explicit al tranzacțiilor într-un bloc PL/SQL. Începe o tranzacție explicită, efectuează operații de manipulare a datelor, verifică erorile și comite sau anulează tranzacția în funcție de rezultat.
+
+Înțelegerea și gestionarea eficientă a tranzacțiilor sunt esențiale pentru menținerea integrității și consistenței datelor într-o bază de date relațională. Întotdeauna ia în considerare logica și cerințele afacerii atunci când decizi când să comiți sau să anulezi o tranzacție.

@@ -1,0 +1,52 @@
+Controlul tranzacțiilor în Oracle SQL implică utilizarea instrucțiunilor de control al tranzacțiilor pentru a gestiona începutul, comiterea și anularea tranzacțiilor. Iată principalele instrucțiuni de control al tranzacțiilor:
+
+1. BEGIN TRANSACTION (Comit implicit):
+În mod implicit, fiecare instrucțiune SQL în Oracle SQL este tratată ca o tranzacție separată, iar un comit implicit este efectuat după fiecare instrucțiune.
+Pentru a începe o tranzacție explicită, poți folosi instrucțiunea BEGIN TRANSACTION.
+Totuși, este important să știi că acest lucru nu este standard SQL și s-ar putea să nu fie suportat în toate sistemele de baze de date.
+    BEGIN TRANSACTION;
+    -- Instrucțiunile tale SQL aici
+    COMMIT;
+
+2. COMMIT:
+Instrucțiunea COMMIT este folosită pentru a salva permanent modificările făcute în cadrul tranzacției curente.
+Face modificările vizibile pentru ceilalți utilizatori.
+    COMMIT;
+
+3. ROLLBACK:
+Instrucțiunea ROLLBACK este folosită pentru a anula modificările făcute în cadrul tranzacției curente.
+Este folosită în mod obișnuit în scenarii de gestionare a erorilor sau pentru a anula modificările în caz de probleme.
+    ROLLBACK;
+
+4. SAVEPOINT:
+Instrucțiunea SAVEPOINT setează un punct de salvare în cadrul unei tranzacții, permițându-ți să revii mai târziu la acel punct de salvare.
+    SAVEPOINT nume_punct_salvare;
+    -- Instrucțiunile tale SQL aici
+    ROLLBACK TO nume_punct_salvare;
+
+Exemplu: Controlul Tranzacțiilor
+    BEGIN
+       -- Începeți o tranzacție explicit
+       SAVEPOINT start_tranzactie;
+
+       -- Efectuați operațiile DML
+       UPDATE angajați SET salariu = salariu * 1.1 UNDE department_id = 10;
+
+       -- Verificați erorile și comiteți sau anulați în consecință
+       IF (fără_erori) THEN
+          COMMIT; -- Comiteți modificările
+       ELSE
+          ROLLBACK TO start_tranzactie; -- Anulați la punctul de salvare
+       END IF;
+    END;
+
+În acest exemplu:
+    Un punct de salvare numit start_tranzactie este setat la începutul tranzacției.
+    Operațiile DML sunt efectuate în cadrul tranzacției.
+    În funcție de existența erorilor (fără_erori), tranzacția este fie comitată, fie anulată la punctul de salvare.
+
+Ia întotdeauna în considerare domeniul și impactul tranzacțiilor tale. 
+Începerea explicită a unei tranzacții cu BEGIN TRANSACTION nu este întotdeauna necesară, deoarece Oracle SQL efectuează comite implicit după fiecare instrucțiune SQL în mod implicit.
+
+Tranzacțiile explicite sunt mai frecvente în limbajele de programare procedurale precum PL/SQL. 
+Folosește tranzacțiile cu discernământ pentru a asigura consistența și integritatea datelor.

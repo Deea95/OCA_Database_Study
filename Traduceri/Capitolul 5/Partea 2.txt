@@ -1,0 +1,37 @@
+Conversia tipului de date, cunoscută și sub denumirea de transformare de tip, este procesul de convertire a unui tip de date în altul. În Oracle SQL, conversia tipului de date poate fi fie implicită, fie explicită.
+
+Conversie implicită a tipului de date:
+    Conversia implicită a tipului de date, cunoscută și sub numele de conversie automată a tipului, este efectuată de motorul de bază de date fără a fi necesar ca utilizatorul să specifice explicit conversia. Oracle convertește automat datele între tipuri de date compatibile atunci când este necesar.
+
+    Exemplu de conversie implicită a tipului de date:
+    SELECT salary + 500
+      FROM employees;
+
+Conversie explicită a tipului de date:
+    Conversia explicită a tipului de date, cunoscută și sub denumirea de conversie de tip, este efectuată de utilizator prin specificarea explicită a tipului de date țintă. Acest lucru se realizează în mod tipic folosind funcții de conversie precum TO_NUMBER, TO_DATE, etc.
+
+    Exemplu de conversie explicită a tipului de date:
+    SELECT TO_NUMBER('123') + 500
+      FROM dual;
+
+Când să folosiți conversia implicită versus cea explicită:
+
+    Conversie Implicită:
+        Conversia implicită este convenabilă și apare adesea automat atunci când motorul de bază de date determină că este sigură conversia între tipurile de date.
+        Este potrivită atunci când conversia este simplă și nu există niciun risc de pierdere de date sau de rezultate neașteptate.
+
+    Conversie Explicită:
+        Conversia explicită este necesară atunci când există un risc de pierdere de date sau când utilizatorul dorește să asigure un comportament specific de conversie.
+        Este utilă atunci când utilizatorul trebuie să convertească datele într-un tip de date specific, cum ar fi conversia unui șir într-o dată sau un număr.
+
+Considerații:
+
+    Performanță:
+        Conversia implicită ar putea avea un impact ușor asupra performanței, în special în interogările complexe.
+        Conversia explicită permite mai mult control asupra optimizării performanței.
+
+    Integritatea Datelor:
+        Conversia implicită ar putea duce la rezultate neașteptate sau erori dacă conversia nu este simplă.
+        Conversia explicită permite utilizatorului să gestioneze problemele potențiale mai proactiv.
+
+Înțelegerea când să utilizați conversia implicită sau explicită depinde de cerințele specifice ale interogării dvs. și de compatibilitatea tipurilor de date implicate. Fiți întotdeauna atenți la pierderea potențială de date sau la comportamentul neașteptat atunci când efectuați conversii de tip.

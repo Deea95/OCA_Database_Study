@@ -1,0 +1,29 @@
+În Oracle SQL, poți îngloba mai multe funcții folosind rezultatul unei funcții ca argument pentru o altă funcție. Acest lucru îți permite să efectuezi operații și transformări complexe asupra datelor în cadrul unei singure interogări SQL. Iată câteva exemple de înglobare a mai multor funcții:
+
+1. Înglobarea funcțiilor TO_CHAR și TO_DATE:
+Poți îngloba funcțiile TO_CHAR și TO_DATE pentru a schimba formatul unei valori de dată.
+    SELECT TO_CHAR(TO_DATE('2022-01-15', 'YYYY-MM-DD'), 'DD-MON-YYYY') AS formatted_date
+      FROM dual;
+
+2. Înglobarea funcțiilor TO_NUMBER și TO_CHAR:
+Poți îngloba funcțiile TO_NUMBER și TO_CHAR pentru a formata o valoare numerică.
+    SELECT TO_CHAR(TO_NUMBER('12345') + 500, '999,999') AS formatted_number
+      FROM dual;
+
+3. Înglobarea funcțiilor în clauza WHERE:
+Poți îngloba funcții în clauza WHERE pentru a filtra datele în funcție de condiții complexe.
+    SELECT employee_id, salary
+      FROM employees
+     WHERE TO_NUMBER(salary) > 50000;
+
+4. Înglobarea funcțiilor TRUNC și TO_CHAR pentru formatarea datelor:
+Poți îngloba funcții pentru a efectua operații și formatare într-o singură interogare.
+    SELECT employee_id, TO_CHAR(TRUNC(hire_date, 'MONTH'), 'DD-MON-YYYY') AS start_of_month
+      FROM employees;
+
+5. Înglobarea funcțiilor COALESCE și TO_NUMBER:
+Poți îngloba funcții pentru a gestiona valorile NULL și a efectua operații numerice.
+    SELECT employee_id, COALESCE(TO_NUMBER(salary), 0) AS numeric_salary
+      FROM employees;
+
+Aceste exemple ilustrează modul în care poți îngloba funcții pentru a obține transformări și condiții mai complexe în interogările tale SQL. Întotdeauna ia în considerare ordinea de executare și compatibilitatea funcțiilor înglobate. Consultă întotdeauna documentația Oracle pentru versiunea specifică pe care o folosești pentru informații detaliate despre aceste funcții și parametrii lor.

@@ -1,0 +1,19 @@
+În SQL, puteți elimina coloane dintr-o tabelă folosind instrucțiunea ALTER TABLE. În plus, baza de date Oracle oferă posibilitatea de a marca o coloană ca "UNUSED" fără a o elimina fizic din tabel. Să analizăm exemple pentru eliminarea coloanelor și marcarea unei coloane ca UNUSED în Oracle:
+
+Eliminarea Coloanelor:
+Pentru a elimina o coloană dintr-o tabelă, puteți folosi instrucțiunea ALTER TABLE cu clauza DROP COLUMN. Iată un exemplu:
+```sql
+ALTER TABLE employees DROP COLUMN hire_date;
+```
+Marcarea Coloanei ca UNUSED:
+Baza de date Oracle vă permite să marcați o coloană ca UNUSED fără a o elimina efectiv din tabel. Acest lucru poate fi util dacă doriți să ascundeți temporar o coloană fără a afecta structura tabelului. Sintaxa este următoarea:
+```sql
+ALTER TABLE employees SET UNUSED COLUMN hire_date;
+```
+Aceasta marchează coloana "hire_date" ca UNUSED în tabelul "employees". Coloana va fi ignorată de majoritatea operațiilor SQL, iar spațiul său nu va fi recuperat. Puteți mai târziu să eliminați coloana din tabel în mod permanent folosind instrucțiunea DROP UNUSED COLUMNS:
+```sql
+ALTER TABLE employees DROP UNUSED COLUMNS;
+```
+Această instrucțiune elimină toate coloanele marcate ca UNUSED din tabelul "employees".
+
+Vă rugăm să rețineți că marcarea unei coloane ca UNUSED și apoi eliminarea acesteia este specifică bazei de date Oracle. Alte sisteme de gestionare a bazelor de date pot avea abordări diferite pentru a obține rezultate similare. Consultați întotdeauna documentația sistemului de bază de date cu care lucrați pentru informații precise și actualizate.

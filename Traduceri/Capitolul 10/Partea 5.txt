@@ -1,0 +1,29 @@
+Instrucțiunea MERGE în Oracle SQL îți permite să efectuezi operații de inserare, actualizare sau ștergere în funcție de o condiție specificată. Este utilă pentru a efectua logica condițională pe o tabelă țintă, comparând-o cu o tabelă sau interogare sursă și luând diferite acțiuni în funcție de dacă se găsește o potrivire. Iată un exemplu de utilizare a instrucțiunii MERGE:
+
+Exemplu: Utilizarea Instrucțiunii MERGE
+Să presupunem că ai o tabelă țintă numită "employees" și o tabelă sursă numită "employees_updates". Dorești să actualizezi înregistrările existente dacă se potrivesc, să inserezi înregistrări noi dacă acestea nu există și să ștergi înregistrări din tabela țintă dacă nu mai există în sursă.
+
+```sql
+MERGE INTO employees target
+USING employees_updates source
+ON (target.employee_id = source.employee_id)
+WHEN MATCHED THEN
+   UPDATE SET target.salary = source.new_salary
+WHEN NOT MATCHED THEN
+   INSERT (employee_id, employee_name, department_id, salary)
+   VALUES (source.employee_id, source.employee_name, source.department_id, source.new_salary)
+WHEN NOT MATCHED BY SOURCE THEN
+   DELETE;
+```
+
+În acest exemplu:
+- `MERGE INTO employees target`: Specifică tabela țintă ca "employees".
+- `USING employees_updates source`: Specifică tabela sursă ca "employees_updates".
+- `ON (target.employee_id = source.employee_id)`: Specifică condiția pentru potrivirea înregistrărilor bazată pe coloana employee_id.
+- `WHEN MATCHED THEN UPDATE SET target.salary = source.new_salary`: Actualizează salariul pentru înregistrările potrivite.
+- `WHEN NOT MATCHED THEN INSERT`: Inserează înregistrări noi pentru înregistrările nepotrivite.
+- `WHEN NOT MATCHED BY SOURCE THEN DELETE`: Șterge înregistrările din tabela țintă care nu au nicio potrivire în sursă.
+
+Această instrucțiune MERGE combină eficient operațiile de inserare, actualizare și ștergere pe baza condițiilor specificate. Este important să definești cu atenție condițiile de potrivire pentru a obține rezultatele dorite.
+
+Întotdeauna testează instrucțiunile MERGE într-un mediu sigur și ia în considerare realizarea de copii de siguranță înainte de a face modificări semnificative în datele tale. De asemenea, asigură-te că coloanele și tipurile de date din tabelele sursă și țintă sunt aliniate în mod corespunzător.

@@ -1,0 +1,65 @@
+Într-o bază de date relațională, constrângerile sunt reguli care definesc relațiile între tabele și datele stocate în ele. Constrângerile ajută la asigurarea acurateții și integrității datelor. Iată câteva tipuri comune de constrângeri și cum să le gestionăm:
+
+1. Constrângerea Cheii Primare (Primary Key Constraint):
+O cheie primară identifică în mod unic fiecare înregistrare dintr-o tabelă. Pentru a crea o constrângere de cheie primară:
+```sql
+CREATE TABLE employees (
+    employee_id INT PRIMARY KEY,
+    first_name VARCHAR(50),
+    last_name VARCHAR(50));
+```
+Pentru a adăuga o cheie primară la o tabelă existentă:
+```sql
+ALTER TABLE employees ADD PRIMARY KEY (employee_id);
+```
+
+2. Constrângerea Cheii Străine (Foreign Key Constraint):
+O cheie străină stabilește o legătură între două tabele prin referirea unei chei unice dintr-o altă tabelă. Pentru a crea o cheie străină:
+```sql
+CREATE TABLE orders (
+    order_id INT PRIMARY KEY,
+    customer_id INT,
+    order_date DATE,
+    FOREIGN KEY (customer_id) REFERENCES customers(customer_id));
+```
+
+3. Constrângerea Unică (Unique Constraint):
+O constrângere unică asigură că toate valorile dintr-o coloană sunt distincte. Pentru a crea o constrângere unică:
+```sql
+CREATE TABLE departments (
+    department_id INT PRIMARY KEY,
+    department_name VARCHAR(50) UNIQUE);
+```
+
+4. Constrângerea de Verificare (Check Constraint):
+O constrângere de verificare impune o condiție asupra valorilor dintr-o coloană. De exemplu:
+```sql
+CREATE TABLE students (
+    student_id INT PRIMARY KEY,
+    age INT CHECK (age >= 18),
+    grade CHAR(1) CHECK (grade IN ('A', 'B', 'C', 'D', 'F')));
+```
+
+5. Constrângerea Not Null (Not Null Constraint):
+O constrângere not null asigură că o coloană nu poate avea o valoare null:
+```sql
+CREATE TABLE customers (
+    customer_id INT PRIMARY KEY,
+    first_name VARCHAR(50) NOT NULL,
+    last_name VARCHAR(50) NOT NULL);
+```
+
+6. Eliminarea Constrângerilor (Dropping Constraints):
+Pentru a elimina o constrângere, puteți folosi instrucțiunea ALTER TABLE. De exemplu, pentru a elimina o constrângere de cheie primară:
+```sql
+ALTER TABLE employees DROP PRIMARY KEY;
+```
+
+7. Dezactivarea și Activarea Constrângerilor (Disabling and Enabling Constraints):
+Unele baze de date vă permit să dezactivați și să activați constrângerile. Aceasta poate fi utilă atunci când trebuie să efectuați operații care încalcă temporar o constrângere. De exemplu:
+```sql
+ALTER TABLE employees DISABLE CONSTRAINT emp_salary_check;
+ALTER TABLE employees ENABLE CONSTRAINT emp_salary_check;
+```
+
+Fiți întotdeauna precaut când modificați constrângerile, deoarece acestea joacă un rol crucial în menținerea integrității datelor. Asigurați-vă că modificările dvs. sunt conforme cu designul bazei de date și regulile business-ului.

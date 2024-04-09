@@ -1,0 +1,43 @@
+Când lucrați cu coloane într-o bază de date relațională, este important să înțelegeți cum să le descrieți și să le gestionați folosind instrucțiunile Limbajului de Definire a Datelor (DDL). Iată câteva concepte cheie legate de descrierea și lucrul cu coloanele și tipurile de date:
+
+Descrierea unei Tabele:
+Folosiți instrucțiunea DESCRIBE sau scurtătura DESC pentru a vizualiza structura unei tabele, inclusiv detaliile coloanelor sale, tipurile de date și constrângerile.
+    DESCRIBE employees;
+
+Crearea unei Tabele cu Coloane:
+Atunci când creați o tabelă, specificați coloanele împreună cu tipurile lor de date.
+Tipurile de date definesc tipul de date care poate fi stocat într-o coloană.
+    CREATE TABLE employees (
+        employee_id INT,
+        first_name VARCHAR(50),
+        last_name VARCHAR(50),
+        hire_date DATE);
+
+Modificarea Tipurilor de Date ale Coloanei:
+Folosiți instrucțiunea ALTER TABLE pentru a modifica tipul de date al unei coloane.
+    ALTER TABLE employees MODIFY hire_date TIMESTAMP;
+
+Adăugarea unei Noi Coloane:
+Puteți adăuga o nouă coloană la o tabelă existentă folosind instrucțiunea ALTER TABLE.
+    ALTER TABLE employees ADD email VARCHAR(100);
+
+Redenumirea unei Coloane:
+Redenumirea unei coloane este posibilă folosind instrucțiunea ALTER TABLE.
+    ALTER TABLE employees RENAME COLUMN first_name TO given_name;
+
+Ștergerea unei Coloane:
+Pentru a elimina o coloană dintr-o tabelă, folosiți instrucțiunea ALTER TABLE cu clauza DROP COLUMN.
+    ALTER TABLE employees DROP COLUMN email;
+
+Constrângeri ale Coloanelor:
+Constrângerile definesc reguli care aplică integritatea datelor.
+Constrângerile comune includ NOT NULL, UNIQUE, PRIMARY KEY, FOREIGN KEY și CHECK.
+    CREATE TABLE students (
+        student_id INT PRIMARY KEY,
+        first_name VARCHAR(50) NOT NULL,
+        last_name VARCHAR(50) NOT NULL,
+        email VARCHAR(100) UNIQUE,
+        age INT CHECK (age >= 18));
+
+Înțelegerea și utilizarea eficientă a acestor concepte vă vor ajuta să descrieți, să creați, să modificați și să gestionați coloanele într-o bază de date relațională.
+Țineți cont că bazele de date specifice pot avea variații în sintaxă și tipuri de date suportate, deci consultați documentația pentru baza de date pe care o utilizați.

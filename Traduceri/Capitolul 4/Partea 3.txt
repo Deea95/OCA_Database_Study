@@ -1,0 +1,31 @@
+În Oracle SQL, tipul de date DATE și diverse funcții pentru date sunt folosite pentru a manipula valorile de date. Iată câteva funcții comune pentru date și exemple de utilizare a acestora:
+
+1. CURRENT_DATE:
+Returnează data curentă.
+    SELECT CURRENT_DATE AS data_curentă
+      FROM dual;
+
+2. SYSDATE:
+Returnează data și ora curente.
+    SELECT SYSDATE AS data_și_oră_curentă
+      FROM dual;
+
+3. LAST_DAY:
+Returnează ultima zi a lunii pentru o dată dată.
+    SELECT LAST_DAY(SYSDATE) AS ultima_zi_a_lunii
+      FROM dual;
+
+4. NEXT_DAY:
+Returnează următoarea zi a săptămânii pentru o dată dată.
+    SELECT NEXT_DAY(SYSDATE) AS următoarea_zi_a_săptămânii
+      FROM dual;
+
+5. TO_DATE și TO_CHAR:
+TO_DATE convertește un șir într-o dată, iar TO_CHAR convertește o dată într-un șir.
+    SELECT TO_DATE('20/11/2023', 'DD/MM/RRRR') AS dată_convertită
+      FROM dual;
+
+    SELECT TO_CHAR(SYSDATE, 'DD/MM/RRRR HH24:MI:SS') AS dată_formatată
+      FROM dual;
+
+Aceste exemple demonstrează cum să utilizați diverse funcții pentru date în Oracle SQL pentru a manipula și lucra cu valorile de date. Consultați întotdeauna documentația Oracle pentru versiunea specifică pe care o utilizați pentru informații detaliate despre aceste funcții și parametrii lor.

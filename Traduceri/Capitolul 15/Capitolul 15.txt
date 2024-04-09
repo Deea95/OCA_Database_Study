@@ -1,0 +1,82 @@
+În Oracle SQL, vederile dicționarului de date furnizează informații despre obiectele bazei de date, conturile de utilizator, privilegiile și alte metadate. Aceste vederi fac parte din dicționarul de date, un set de tabele și vederi care conțin metadate despre baza de date. Iată câteva vederi de dicționar de date utilizate frecvent și exemple despre cum să le utilizați:
+
+1. ALL_TABLES:
+Furnizează informații despre tabelele accesibile de către utilizatorul curent.
+```sql
+SELECT table_name
+     , num_rows
+  FROM all_tables
+ WHERE owner = 'HR';
+```
+
+2. ALL_TAB_COLUMNS:
+Conține informații despre coloanele tabelelor accesibile de către utilizatorul curent.
+```sql
+SELECT table_name
+     , column_name
+     , data_type
+  FROM all_tab_columns
+ WHERE owner = 'HR';
+```
+
+3. ALL_VIEWS:
+Furnizează informații despre vederile accesibile de către utilizatorul curent.
+```sql
+SELECT view_name
+     , text
+  FROM all_views
+ WHERE owner = 'HR';
+```
+
+4. USER_OBJECTS:
+Conține informații despre obiectele deținute de către utilizatorul curent.
+```sql
+SELECT object_name
+     , object_type
+  FROM user_objects;
+```
+
+5. ALL_USERS:
+Conține informații despre toți utilizatorii bazei de date.
+```sql
+SELECT username
+     , account_status
+  FROM all_users;
+```
+
+6. DBA_TABLES:
+Furnizează informații despre toate tabelele din baza de date (necesită privilegii DBA).
+```sql
+SELECT table_name
+     , num_rows
+  FROM dba_tables
+ WHERE owner = 'HR';
+```
+
+7. DBA_TAB_COLUMNS:
+Conține informații despre coloanele tuturor tabelelor din baza de date (necesită privilegii DBA).
+```sql
+SELECT table_name
+     , column_name
+     , data_type
+  FROM dba_tab_columns
+ WHERE owner = 'HR';
+```
+
+8. DBA_VIEWS:
+```sql
+SELECT view_name
+     , text
+  FROM dba_views
+ WHERE owner = 'HR';
+```
+
+9. DBA_USERS:
+Conține informații despre toți utilizatorii bazei de date (necesită privilegii DBA).
+```sql
+SELECT username
+     , account_status
+  FROM dba_users;
+```
+
+Aceste exemple demonstrează cum să utilizați vederile dicționarului de date pentru a obține informații despre obiectele bazei de date, utilizatori și alte metadate. Asigurați-vă întotdeauna că aveți privilegiile necesare pentru a accesa vederile specifice, în special cele prefixate cu "DBA_." Consultați documentația Oracle pentru versiunea specifică pe care o utilizați pentru informații cuprinzătoare despre vederile dicționarului de date și coloanele lor.

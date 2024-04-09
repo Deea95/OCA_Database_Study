@@ -1,0 +1,49 @@
+Instrucțiunea SELECT din SQL este folosită pentru a recupera date din una sau mai multe tabele dintr-o bază de date. Este una dintre cele mai fundamentale și frecvent utilizate instrucțiuni SQL. Iată o prezentare generală de bază despre cum să folosiți instrucțiunea SELECT:
+
+1. Selectarea Tuturor Coloanelor dintr-o Tabelă:
+    SELECT *
+      FROM nume_tabel;
+
+2. Selectarea Coloanelor Specifice:
+    SELECT coloană1
+         , coloană2
+      FROM nume_tabel;
+
+3. Filtrarea Rândurilor cu Clauza WHERE:
+    SELECT coloană1
+         , coloană2
+      FROM nume_tabel
+     WHERE condiție;
+
+4. Sortarea Rezultatelor cu Clauza ORDER BY:
+    SELECT coloană1
+         , coloană2
+      FROM nume_tabel
+    ORDER BY coloană1 [ASC|DESC], coloană2 [ASC|DESC];
+
+5. Limitarea Rezultatelor cu LIMIT/OFFSET (sau FETCH FIRST în unele baze de date):
+    SELECT coloană1
+         , coloană2
+      FROM nume_tabel
+     LIMIT număr OFFSET deplasare;
+
+6. Gruparea Datelor cu Clauza GROUP BY:
+    SELECT id_departament
+         , AVG(salariu)
+      FROM angajați
+    GROUP BY id_departament;
+
+7. Unirea Tabelelor cu Clauza JOIN:
+    SELECT angajați.prenume
+         , departamente.nume_departament
+      FROM angajați
+      JOIN departamente ON angajați.id_departament = departamente.id_departament;
+
+8. Subinterogări:
+    SELECT coloană1
+      FROM nume_tabel
+     WHERE coloană1 IN (SELECT coloană1 
+                         FROM altă_tabelă
+                        WHERE condiție);
+
+Acestea sunt componentele de bază ale instrucțiunii SELECT din SQL. Oferă o modalitate puternică și flexibilă de a recupera și manipula date în baze de date relaționale.

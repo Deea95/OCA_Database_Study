@@ -1,0 +1,24 @@
+În Oracle SQL, funcțiile NVL, NULLIF și COALESCE sunt folosite în mod obișnuit pentru a gestiona valorile NULL din date. Iată exemple de cum să folosiți fiecare funcție:
+
+1. Funcția NVL:
+Funcția NVL este folosită pentru a înlocui o valoare NULL cu o valoare implicit specificată.
+    SELECT employee_id
+         , NVL(salary, 0) AS salariu_real
+      FROM employees;
+
+2. Funcția NULLIF:
+Funcția NULLIF returnează NULL dacă două expresii sunt egale; în caz contrar, returnează prima expresie.
+    SELECT employee_id, NULLIF(commission_pct, 0) AS procent_comision
+      FROM employees;
+
+3. Funcția COALESCE:
+Funcția COALESCE returnează prima expresie non-NULL din listă.
+    SELECT employee_id, COALESCE(manager_id, supervisor_id, 'Neatribuit') AS manager_atribuit
+      FROM employees;
+
+4. Utilizarea NVL2 pentru înlocuire condiționată:
+Funcția NVL2 este folosită pentru înlocuirea condiționată. Returnează prima expresie dacă nu este NULL; în caz contrar, returnează a doua expresie.
+    SELECT employee_id, NVL2(manager_id, 'Atribuit', 'Neatribuit') AS atribuire_manager
+      FROM employees;
+
+Aceste funcții oferă flexibilitate în tratarea valorilor NULL în interogările SQL. Alegeți funcția care se potrivește cel mai bine logicii de gestionare a valorilor NULL în cazul dvs. specific de utilizare. Consultați întotdeauna documentația Oracle pentru versiunea specifică pe care o utilizați pentru informații detaliate despre aceste funcții și parametrii lor.

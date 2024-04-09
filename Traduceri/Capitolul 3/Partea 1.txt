@@ -1,0 +1,40 @@
+În SQL, regulile de precedență dictează ordinea în care operatorii sunt evaluați într-o expresie. Înțelegerea acestor reguli este importantă pentru a scrie interogări SQL precise și previzibile.
+Iată un rezumat al regulilor de precedență, de la cea mai mare la cea mai mică:
+
+1. Paranteze:
+Expresiile cuprinse între paranteze sunt evaluate în primul rând.
+    SELECT (salariu + bonus) * 0.1 AS impozit
+      FROM compensația_angajaților;
+
+2. Operatori Unari:
+Operatorii unari (de exemplu, - pentru negație) au următoarea cea mai mare precedență.
+    SELECT -salariu AS salariu_negat
+      FROM angajați;
+
+3. Operatori Aritmetici:
+Înmulțirea (*), împărțirea (/) și modulo (%) au o precedență mai mare decât adunarea (+) și scăderea (-).
+    SELECT salariu * 0.1 + bonus AS compensație_totală
+      FROM compensația_angajaților;
+
+4. Operatorul de Concatenare:
+Operatorul de concatenare (||) are o precedență mai mare decât majoritatea celorlalți operatori.
+    SELECT prenume || ' ' || nume AS nume_complet
+      FROM angajați;
+
+5. Operatorii de Comparare:
+Operatorii de comparație (de exemplu, =, <, >, <=, >=, <>, !=) au o precedență mai mică decât operatorii aritmetici și de concatenare.
+    SELECT id_angajat
+         , salariu * 1.1 AS salariu_crescut
+      FROM angajați
+     WHERE id_departament <> 10;
+
+6. Operatorii Logici:
+Operatorii logici (de exemplu, AND, OR, NOT) au cea mai mică precedență.
+    SELECT id_angajat
+         , prenume
+         , nume
+      FROM angajați
+     WHERE salariu > 50000 
+       AND id_departament = 20;
+
+Înțelegerea regulilor de precedență este crucială pentru a scrie expresii SQL precise și semnificative, deoarece determină ordinea în care sunt executate operațiile. În caz de îndoială, utilizați paranteze pentru a specifica explicit ordinea dorită a operațiilor și pentru a îmbunătăți claritatea interogărilor SQL.

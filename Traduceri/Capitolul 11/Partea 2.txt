@@ -1,0 +1,57 @@
+În Oracle SQL, o secvență este un obiect de bază de date care generează o serie de valori numerice unice. Secvențele sunt adesea folosite pentru a genera valori cheie primare pentru tabele. Iată câteva operațiuni cheie legate de gestionarea secvențelor:
+
+Crearea unei secvențe:
+Pentru a crea o secvență, poți folosi instrucțiunea CREATE SEQUENCE. De exemplu:
+```sql
+CREATE SEQUENCE employee_id_seq
+  START WITH 1
+  INCREMENT BY 1
+  MAXVALUE 1000
+  NOCACHE
+  NOCYCLE;
+```
+În acest exemplu:
+- Secvența denumită employee_id_seq este creată.
+- Ea începe cu valoarea 1 și se incrementează cu 1 pentru fiecare valoare următoare.
+- MAXVALUE este setat la 1000, indicând că secvența nu va depăși această valoare.
+- NOCACHE specifică faptul că Oracle nu va prealoca numerele secvenței.
+- NOCYCLE indică faptul că secvența nu va reporni după ce a atins MAXVALUE.
+
+Obținerea valorilor din secvență:
+Pentru a obține următoarea valoare dintr-o secvență, poți folosi funcția NEXTVAL:
+```sql
+SELECT employee_id_seq.NEXTVAL 
+  FROM dual;
+```
+
+Utilizarea valorilor din secvență în instrucțiunile INSERT:
+Poți folosi valorile din secvență în instrucțiunile INSERT pentru a genera automat identificatori unici:
+```sql
+INSERT INTO employees (employee_id, employee_name, salary)
+               VALUES (employee_id_seq.NEXTVAL, 'John Doe', 50000);
+```
+
+Modificarea unei secvențe:
+Poți folosi instrucțiunea ALTER SEQUENCE pentru a modifica proprietățile unei secvențe existente. De exemplu:
+```sql
+ALTER SEQUENCE employee_id_seq
+  INCREMENT BY 2
+  MAXVALUE 2000;
+```
+
+Ștergerea unei secvențe:
+Pentru a elimina o secvență, poți folosi instrucțiunea DROP SEQUENCE:
+```sql
+DROP SEQUENCE employee_id_seq;
+```
+
+Vizualizarea informațiilor despre secvențe:
+Poți interoga vederile dicționarului de date pentru a obține informații despre secvențele existente. De exemplu:
+```sql
+SELECT sequence_name
+     , last_number
+  FROM user_sequences
+ WHERE sequence_name = 'EMPLOYEE_ID_SEQ';
+```
+
+Secvențele sunt valoroase pentru generarea eficientă a identificatorilor unici. Atunci când folosești secvențele, fii atent la proprietățile lor și la modul în care se încadrează în designul bazei tale de date. Monitorizează în mod regulat utilizarea secvențelor și ajustează parametrii dacă este necesar pentru a asigura performanța optimă.

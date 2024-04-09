@@ -1,0 +1,50 @@
+În Oracle SQL, indexurile sunt obiecte de bază de date care oferă o modalitate rapidă și eficientă de a recupera rânduri dintr-o tabelă. Ele îmbunătățesc performanța interogărilor, permițând motorului de bază de date să localizeze și să acceseze rapid rândurile asociate cu valori specifice ale coloanelor. Iată câteva operații cheie legate de gestionarea indexurilor:
+
+Crearea unui index:
+Pentru a crea un index pe o coloană specifică, poți folosi instrucțiunea CREATE INDEX. De exemplu:
+```sql
+CREATE INDEX idx_employee_name ON employees(employee_name);
+```
+
+Ștergerea unui index:
+Pentru a elimina un index existent, poți folosi instrucțiunea DROP INDEX. De exemplu:
+```sql
+DROP INDEX idx_employee_name;
+```
+
+Vizualizarea informațiilor despre index:
+Poți vizualiza informații despre indexurile existente într-o tabelă prin interogarea vederilor dicționarului de date. De exemplu, pentru a vedea indexurile de pe tabela employees:
+```sql
+SELECT index_name
+     , column_name
+  FROM user_ind_columns
+ WHERE table_name = 'EMPLOYEES';
+```
+
+Gestionarea opțiunilor indexului:
+La crearea unui index, poți specifica diverse opțiuni pentru a personaliza comportamentul său. De exemplu:
+```sql
+CREATE INDEX idx_employee_name ON employees(employee_name)
+TABLESPACE users
+PCTFREE 10
+INITRANS 2;
+```
+
+În acest exemplu, opțiunile TABLESPACE, PCTFREE și INITRANS sunt folosite pentru a seta spațiul de tabel pentru index, procentul de spațiu liber care să fie lăsat în fiecare bloc de date și numărul inițial de înregistrări de tranzacție alocate, respectiv.
+
+Reconstruirea unui index:
+Poți folosi instrucțiunea ALTER INDEX pentru a reconstrui un index existent. Reconstruirea unui index poate fi utilă pentru defragmentare sau pentru a aplica modificările făcute la opțiunile indexului. De exemplu:
+```sql
+ALTER INDEX idx_employee_name REBUILD;
+```
+
+Monitorizarea utilizării indexului:
+Oracle oferă instrumente pentru a monitoriza și a aduna statistici despre utilizarea indexului. Optimizatorul Oracle folosește aceste statistici pentru a lua decizii informate despre planurile de execuție a interogărilor.
+```sql
+Gather statistics on an index
+EXEC DBMS_STATS.GATHER_INDEX_STATS('HR', 'EMPLOYEES', 'IDX_EMPLOYEE_NAME');
+```
+
+Acest exemplu folosește procedura DBMS_STATS.GATHER_INDEX_STATS pentru a aduna statistici pentru indexul IDX_EMPLOYEE_NAME de pe tabela EMPLOYEES din schema HR.
+
+Întotdeauna ia în considerare cerințele specifice și obiectivele de performanță ale bazei tale de date atunci când gestionezi indexurile. Inserțiile, actualizările și ștergerile frecvente pe o tabelă pot afecta eficacitatea indexurilor, iar întreținerea periodică poate fi necesară. Monitorizează și analizează în mod regulat performanța interogărilor tale pentru a te asigura că indexurile optimizează recuperarea datelor eficient.

@@ -1,0 +1,31 @@
+Subinterogările corelate în Oracle SQL sunt subinterogări care fac referire la coloane din interogarea externă. Ele sunt utile atunci când dorești să actualizezi sau să ștergi înregistrări pe baza unor condiții care implică valori din ambele interogări, atât din cea externă, cât și din cea internă. Iată exemple de utilizare a subinterogărilor corelate pentru actualizarea și ștergerea înregistrărilor:
+
+Exemplu: Actualizarea Înregistrărilor cu Subinterogare Corelată
+Să presupunem că ai o tabelă "students", și dorești să actualizezi notele studenților la nota maximă din cursurile lor respective:
+```sql
+UPDATE students s
+   SET grade = (SELECT MAX(grade) 
+                  FROM students 
+                 WHERE course_id = s.course_id);
+```
+În acest exemplu:
+- Interogarea principală actualizează tabela "students" (cu aliasul s).
+- Subinterogarea corelată (SELECT MAX(grade) FROM students WHERE course_id = s.course_id) calculează nota maximă pentru fiecare curs.
+- Partea SET grade = ... actualizează coloana "grade" pentru fiecare student la nota maximă din cursurile lor respective.
+
+Exemplu: Ștergerea Înregistrărilor cu Subinterogare Corelată
+Să presupunem că ai o tabelă "employees", și dorești să ștergi angajații care câștigă mai puțin decât salariul mediu din departamentul lor:
+```sql
+DELETE employees e
+ WHERE salary < (SELECT AVG(salary) 
+                   FROM employees 
+                  WHERE department_id = e.department_id);
+```
+În acest exemplu:
+- Interogarea principală șterge înregistrări din tabela "employees" (cu aliasul e).
+- Subinterogarea corelată (SELECT AVG(salary) FROM employees WHERE department_id = e.department_id) calculează salariul mediu pentru fiecare departament.
+- Condiția WHERE salary < ... asigură că sunt șterși doar angajații cu salarii mai mici decât salariul mediu din departamentul lor.
+
+Aceste exemple ilustrează cum poți folosi subinterogări corelate în Oracle SQL pentru a actualiza sau șterge înregistrări pe baza unor condiții care implică valori din ambele interogări, atât din cea externă, cât și din cea internă. 
+
+Fii întotdeauna precaut atunci când folosești subinterogări corelate, deoarece pot avea implicații asupra performanței, mai ales dacă subinterogarea este executată pentru fiecare înregistrare din interogarea externă. Asigură-te că subinterogările tale sunt proiectate eficient și sunt necesare pentru cazul tău specific de utilizare.

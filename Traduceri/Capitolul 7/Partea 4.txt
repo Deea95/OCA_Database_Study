@@ -1,0 +1,21 @@
+Un produs cartezian, cunoscut și sub numele de cross join, este rezultatul combinării fiecărei înregistrări dintr-o tabelă cu fiecare înregistrare dintr-o altă tabelă. Acesta se formează atunci când nu este specificată o condiție de join. Numărul de înregistrări din produsul cartezian este produsul dintre numărul de înregistrări din fiecare tabel.
+
+Iată un exemplu de utilizare a unui produs cartezian în Oracle SQL:
+Exemplu: Produs Cartezian
+```sql
+SELECT employees.employee_id
+     , employees.employee_name
+     , departments.department_name
+  FROM employees
+  CROSS JOIN departments;
+```
+
+În această interogare:
+- Clauza CROSS JOIN este folosită pentru a crea un produs cartezian între tabelele "employees" și "departments".
+- Fiecare înregistrare din tabela "employees" este combinată cu fiecare înregistrare din tabela "departments".
+
+Deși produsele carteziane au cazuri de utilizare specifice, acestea sunt, în general, folosite cu precauție din cauza potențialului lor de a genera un set de rezultate mare. Dacă nu ești atent, ai putea recupera involuntar mai multe date decât este necesar, ceea ce poate duce la probleme de performanță.
+
+Este demn de menționat că în multe scenarii practice, un produs cartezian nu este specificat explicit, iar join-urile bazate pe relațiile cheie sunt preferate pentru rezultate mai semnificative și selective.
+
+Asigură-te întotdeauna că ai o înțelegere clară a datelor tale și a relațiilor dintre tabele atunci când lucrezi cu produse carteziane. Folosește-le cu grijă și ia în considerare implicatiile asupra performanței și dimensiunii setului de rezultate.

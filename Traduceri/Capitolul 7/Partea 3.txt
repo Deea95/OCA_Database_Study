@@ -1,0 +1,33 @@
+În SQL, inclusiv în Oracle SQL, outer joins sunt folosite pentru a recupera înregistrări dintr-o singură tabelă, chiar dacă nu există înregistrări corespondente într-o altă tabelă. Există trei tipuri de outer joins: LEFT OUTER JOIN, RIGHT OUTER JOIN și FULL OUTER JOIN. Iată exemple pentru fiecare:
+
+1. LEFT OUTER JOIN:
+LEFT OUTER JOIN returnează toate înregistrările din tabela din stânga (tabela specificată înainte de cuvântul cheie JOIN) și înregistrările potrivite din tabela din dreapta. Dacă nu există o potrivire, sunt returnate valori NULL pentru coloanele din tabela din dreapta.
+```sql
+SELECT employees.employee_id
+     , employees.employee_name
+     , departments.department_name
+  FROM employees
+  LEFT JOIN departments ON employees.department_id = departments.department_id;
+```
+
+2. RIGHT OUTER JOIN:
+RIGHT OUTER JOIN returnează toate înregistrările din tabela din dreapta (tabela specificată după cuvântul cheie JOIN) și înregistrările potrivite din tabela din stânga. Dacă nu există o potrivire, sunt returnate valori NULL pentru coloanele din tabela din stânga.
+```sql
+SELECT employees.employee_id
+     , employees.employee_name
+     , departments.department_name
+  FROM employees
+  RIGHT JOIN departments ON employees.department_id = departments.department_id;
+```
+
+3. FULL OUTER JOIN:
+FULL OUTER JOIN returnează toate înregistrările atunci când există o potrivire în tabela din stânga sau în tabela din dreapta. Dacă nu există o potrivire, sunt returnate valori NULL pentru coloanele din tabela fără potrivire.
+```sql
+SELECT employees.employee_id
+     , employees.employee_name
+     , departments.department_name
+  FROM employees
+  FULL JOIN departments ON employees.department_id = departments.department_id;
+```
+
+Aceste exemple demonstrează utilizarea outer joins în Oracle SQL. Alegerea tipului de outer join de utilizat depinde de cerințele specifice ale interogării și de relația dintre tabele. Consultă întotdeauna documentația Oracle pentru versiunea specifică pe care o utilizezi pentru informații detaliate despre outer joins și modul lor de folosire.

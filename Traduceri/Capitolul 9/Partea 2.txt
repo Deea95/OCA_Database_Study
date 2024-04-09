@@ -1,0 +1,23 @@
+Când folosești operatori de seturi într-o subinterogare și dorești să aplici clauza ORDER BY la subinterogare, poți folosi clauza ORDER BY la sfârșitul fiecărui SELECT statement din paranteze. Iată un exemplu:
+
+```sql
+SELECT *
+  FROM (SELECT employee_id
+                 , employee_name 
+              FROM employees
+            UNION
+            SELECT manager_id
+                 , manager_name 
+              FROM managers
+            ORDER BY 1)
+     WHERE department_id = 10;
+```
+
+În acest query:
+- Două declarații SELECT sunt combinate folosind operatorul de set UNION pentru a recupera date despre angajați și manageri.
+- Fiecare declarație SELECT din paranteze include propria clauză ORDER BY. Clauza ORDER BY 1 specifică sortarea bazată pe prima coloană din fiecare declarație SELECT (employee_id și manager_id).
+- Rezultatul final este filtrat folosind clauza WHERE pentru a recupera datele pentru department_id = 10.
+
+Acest mod de abordare asigură că clauza ORDER BY este aplicată corect la fiecare declarație SELECT înainte ca operația de set să fie efectuată, rezultând ordinea de sortare dorită pentru rezultatul final.
+
+Consultă întotdeauna documentația Oracle pentru versiunea specifică pentru a înțelege nuanțele și practicile recomandate în utilizarea operatorilor de set și a clauzei ORDER BY împreună în Oracle SQL.

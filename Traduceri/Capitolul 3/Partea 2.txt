@@ -1,0 +1,30 @@
+Limitarea numărului de rânduri returnate într-o instrucțiune SQL este adesea necesară, în special atunci când se lucrează cu seturi de date mari. Iată câteva modalități de realizare a acestui lucru în SQL:
+
+1. Utilizarea Clauzei LIMIT:
+Clauza LIMIT este folosită în mod obișnuit pentru a restricționa numărul de rânduri returnate în setul de rezultate. Este acceptată de baze de date precum MySQL, PostgreSQL, SQLite și altele.
+    SELECT *
+      FROM nume_tabel
+     LIMIT n;
+
+2. Utilizarea Clauzei FETCH FIRST (ANSI SQL):
+Clauza FETCH FIRST face parte din standardul SQL:2008 și poate fi folosită pentru a limita numărul de rânduri returnate.
+    SELECT *
+      FROM nume_tabel
+     FETCH FIRST n ROWS ONLY;
+
+3. Utilizarea ROWNUM sau ROW_NUMBER() (Oracle):
+În Oracle, puteți folosi ROWNUM sau ROW_NUMBER() cu o subinterogare pentru a limita numărul de rânduri returnate.
+    SELECT coloană1
+         , coloană2
+     FROM (SELECT coloană1
+                , coloană2
+             FROM nume_tabel
+            WHERE ROWNUM <= n);
+
+4. Utilizarea OFFSET și FETCH (pentru Paginare):
+Pentru a implementa paginarea, puteți folosi clauzele OFFSET și FETCH.
+    SELECT *
+      FROM nume_tabel
+    OFFSET m ROWS FETCH FIRST n ROWS ONLY;
+
+Aceste metode vă permit să controlați numărul de rânduri returnate în interogările SQL, fie că aveți nevoie de un număr fix de rânduri, primele N rânduri sau un interval specific pentru implementarea paginării. Sintaxa exactă poate varia în funcție de sistemul de gestionare a bazelor de date pe care îl utilizați.

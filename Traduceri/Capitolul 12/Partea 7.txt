@@ -1,0 +1,50 @@
+Tabelele externe în SQL sunt folosite pentru a accesa datele stocate în afara bazei de date, cum ar fi în fișiere plat (CSV, text, etc.) sau în alte sisteme de baze de date. Tabelele externe vă permit să interogați și să procesați datele fără a le încărca în baza de date.
+Iată un ghid general privind crearea și utilizarea tabelelor externe:
+
+Crearea unei Tabele Externe:
+Sintaxa pentru crearea unei tabele externe poate varia în funcție de sistemul de baze de date pe care-l utilizați. Mai jos este un exemplu pentru Oracle Database folosind instrucțiunea CREATE TABLE...ORGANIZATION EXTERNAL:
+```sql
+CREATE TABLE external_employees
+   (employee_id NUMBER,
+    first_name VARCHAR2(50),
+    last_name VARCHAR2(50))
+ORGANIZATION EXTERNAL
+   (TYPE ORACLE_LOADER
+    DEFAULT DIRECTORY ext_data_dir
+    ACCESS PARAMETERS
+       (RECORDS DELIMITED BY NEWLINE
+        FIELDS (employee_id CHAR(10),
+                first_name CHAR(50),
+                last_name CHAR(50)))
+    LOCATION ('employees.csv'));
+```
+
+În acest exemplu:
+- external_employees este numele tabelei externe.
+- Se presupune că datele sunt într-un fișier CSV numit employees.csv.
+- DEFAULT DIRECTORY specifică directorul în care se află fișierul extern.
+
+Interogarea Tabelei Externe:
+Puteți interoga tabela externă ca și cum ar fi o tabelă obișnuită:
+```sql
+SELECT * FROM external_employees;
+```
+
+Actualizarea Metadatelor Tabelei Externe:
+S-ar putea să fie nevoie să actualizați metadatele dacă datele externe se schimbă. De exemplu, dacă structura fișierului CSV se schimbă, s-ar putea să fie necesar să actualizați definiția tabelei externe în consecință.
+
+Ștergerea Tabelei Externe:
+Pentru a șterge o tabelă externă, puteți folosi instrucțiunea DROP TABLE:
+```sql
+DROP TABLE external_employees;
+```
+
+Considerații:
+- Formatele Datelor: Asigurați-vă că datele din fișierul extern se potrivesc cu formatul datelor specificat în definiția tabelei externe.
+- Parametrii de Acces: Clausula ACCESS PARAMETERS este crucială. Ea definește modul în care datele externe sunt formatate și accesate.
+- Locația Fișierului: Clausula LOCATION specifică calea către fișierul extern.
+- Tipuri de Fișiere: Tabelele externe pot fi utilizate cu diverse tipuri de fișiere, cum ar fi CSV, text, XML, etc.
+- Doar-Citire: Tabelele externe sunt în mod tipic doar pentru citire. Nu puteți efectua operații DML direct pe ele.
+- Sistemul de Baze de Date: Sintaxa și caracteristicile legate de tabelele externe pot varia între sistemele de baze de date (de exemplu, Oracle, SQL Server, etc.).
+
+Vă rugăm să consultați documentația sistemului de baze de date specific pentru informații detaliate despre crearea și utilizarea tabelelor externe, deoarece sintaxa și opțiunile pot diferi între sistemele de gestionare a bazelor de date.

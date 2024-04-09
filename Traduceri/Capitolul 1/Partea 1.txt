@@ -1,0 +1,56 @@
+Tabele/Relații:
+    Definiție: O bază de date relațională este organizată în tabele sau relații. Fiecare tabel constă din rânduri și coloane.
+    Scop: Tabelele reprezintă entități (de exemplu, clienți, produse) și atribuțile acestora.
+
+Atribute/Câmpuri:
+    Definiție: Coloane într-un tabel care reprezintă proprietățile sau atributele entităților.
+    Scop: Atributele stochează informații specifice despre entitățile din tabel.
+
+Tuple/Rânduri:
+    Definiție: Fiecare rând dintr-un tabel este numit un tuplu. Reprezintă o instanță specifică sau un înregistrare a entității.
+    Scop: Tuplurile dețin datele efective.
+
+Chei:
+    Cheie Primară: Un identificator unic pentru fiecare tuplu dintr-un tabel. Asigură integritatea datelor.
+    Cheie Externă: Leagă un tabel de cheia primară a altui tabel. Stabilește relații.
+
+Relații:
+    Definiție: Conexiuni între tabele bazate pe chei comune.
+    Scop: Reprezintă asocieri între diferite entități.
+
+Normalizare:
+    Definiție: Procesul de organizare a datelor pentru a reduce redundanța și a îmbunătăți integritatea datelor.
+    Scop: Asigură stocarea eficientă a datelor și minimizează anomalii de date.
+
+
+Structuri de Stocare:
+    Pagini de Date: Unitatea de bază a stocării datelor.
+    Spații de Tabele: Containere logice de stocare pentru paginile de date.
+
+Indecși:
+    Definiție: Structuri de date care oferă acces rapid la rânduri bazat pe valorile coloanelor.
+    Scop: Îmbunătățirea performanței interogărilor prin accelerarea recuperării datelor.
+
+Caching și Buffering:
+    Buffer Pool: Stocare în memorie pentru datele accesate frecvent.
+    Cache: Stocare pentru rezultatele interogărilor utilizate frecvent.
+
+Organizare Fișiere:
+    Fișiere de Date: Fișiere fizice pe disc care stochează datele efective.
+    Fișiere de Jurnal: Înregistrează modificările efectuate în baza de date în scopuri de recuperare.
+
+Controlul Concomitenței:
+    Mecanisme de Blocare: Asigură consistența datelor în medii multi-utilizator.
+    Nivele de Izolare: Definesc vizibilitatea modificărilor efectuate de o tranzacție față de alte tranzacții.
+
+Optimizarea Interogărilor:
+    Planificator de Interogări: Determină cea mai eficientă modalitate de executare a unei interogări.
+    Indecși și Statistici: Folosiți pentru a îmbunătăți performanța interogărilor.
+
+Backup și Recuperare:
+    Strategii de Backup: Creați periodic copii ale bazei de date.
+    Mecanisme de Recuperare: Restabilirea bazei de date la o stare consistentă după o defecțiune.
+
+Securitate:
+    Controlul Accesului: Definește cine poate accesa și modifica datele.
+    Criptare: Protejează datele sensibile în timpul transmiterii și stocării.

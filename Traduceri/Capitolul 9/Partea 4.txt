@@ -1,0 +1,10 @@
+În Oracle SQL, operatorii de set (UNION, INTERSECT, MINUS) îți permit să combini rezultatele mai multor declarații SELECT. Pentru a folosi operatorii de set, declarațiile SELECT implicate trebuie să aibă coloane compatibile în ceea ce privește numărul și tipurile de date. Iată exemple de utilizare a operatorului MINUS:
+
+```sql
+-- Operatorul MINUS returnează rândurile din prima declarație SELECT care nu sunt prezente în a doua declarație SELECT.
+SELECT employee_id, employee_name FROM employees
+MINUS
+SELECT manager_id, manager_name FROM managers;
+```
+
+Aceste exemple demonstrează cum să folosești clauza MINUS cu operatorii de set în Oracle SQL. Consultă întotdeauna documentația Oracle pentru versiunea specifică pentru informații detaliate despre utilizarea operatorilor de set și a clauzei MINUS împreună.

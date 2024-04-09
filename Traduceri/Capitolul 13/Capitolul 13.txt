@@ -1,0 +1,84 @@
+În Oracle SQL, vederile (views) sunt tabele virtuale bazate pe rezultatul unei interogări SELECT. Ele oferă o modalitate de simplificare a interogărilor complexe, encapsularea logicii și acordarea diferitelor nivele de acces utilizatorilor. Iată câteva aspecte legate de gestionarea vederilor în Oracle SQL:
+
+1. Crearea de vederi:
+Puteți crea o vedere folosind instrucțiunea CREATE VIEW urmată de o interogare SELECT.
+```sql
+CREATE VIEW employee_view AS
+    SELECT employee_id
+         , employee_name
+         , department_id
+      FROM employees
+     WHERE department_id = 10;
+```
+
+2. Modificarea vederilor:
+Pentru a modifica o vedere existentă, puteți utiliza instrucțiunea CREATE OR REPLACE VIEW.
+```sql
+CREATE OR REPLACE VIEW employee_view AS
+    SELECT employee_id
+         , employee_name
+         , department_id
+      FROM employees
+     WHERE department_id = 20;
+```
+
+3. Ștergerea vederilor:
+Pentru a elimina o vedere, puteți utiliza instrucțiunea DROP VIEW.
+```sql
+DROP VIEW employee_view;
+```
+
+4. Interogarea vederilor:
+Odată ce o vedere este creată, o puteți interoga ca pe o tabelă.
+```sql
+SELECT * FROM employee_view;
+```
+
+5. Actualizarea vederilor:
+În unele cazuri, puteți actualiza tabelele subiacente printr-o vedere. Cu toate acestea, există anumite restricții, iar vederea trebuie să îndeplinească anumite criterii.
+```sql
+UPDATE employee_view
+   SET department_id = 30
+ WHERE employee_id = 101;
+```
+
+6. Gestionarea securității vederilor:
+Puteți controla accesul la vederi acordând sau revocând privilegii.
+```sql
+-- Acordarea privilegiului SELECT unui utilizator pentru vedere
+GRANT SELECT ON employee_view TO hr_user;
+
+-- Revocarea privilegiului SELECT de la un utilizator pentru vedere
+REVOKE SELECT ON employee_view FROM hr_user;
+```
+
+7. Dependențele vederilor:
+Puteți interoga vedere ALL_DEPENDENCIES din dicționarul de date pentru a găsi dependențele unei vederi.
+```sql
+SELECT *
+  FROM ALL_DEPENDENCIES
+ WHERE REFERENCED_NAME = 'EMPLOYEE_VIEW';
+```
+
+8. Vederi materializate:
+Oracle suportă vederile materializate, care sunt copii fizice ale rezultatului stocat într-o tabelă. Acestea pot îmbunătăți performanța interogărilor, dar pot necesita întreținere.
+```sql
+CREATE MATERIALIZED VIEW mv_employee AS
+    SELECT employee_id
+         , employee_name
+         , department_id
+      FROM employees
+     WHERE department_id = 10;
+```
+
+9. Reîmprospătarea vederilor materializate:
+Vederile materializate trebuie reîmprospătate pentru a actualiza datele. Puteți utiliza pachetul DBMS_MVIEW sau DBMS_SCHEDULER pentru reîmprospătarea automată.
+```sql
+-- Reîmprospătare manuală
+EXEC DBMS_MVIEW.REFRESH('MV_EMPLOYEE');
+
+-- Reîmprospătare automată folosind DBMS_SCHEDULER
+DBMS_SCHEDULER.create_refresh_job('MV_EMPLOYEE_REFRESH_JOB', INTERVAL=>'SYSDATE + 1');
+```
+
+Acestea sunt aspectele fundamentale ale gestionării vederilor în Oracle SQL. Vederile oferă o modalitate flexibilă de organizare și prezentare a datelor, iar utilizarea lor depinde de cerințele specifice ale aplicației dvs. de bază de date. Consultați întotdeauna documentația Oracle pentru versiunea specifică pe care o utilizați pentru informații detaliate despre gestionarea vederilor și a vederilor materializate.

@@ -1,0 +1,13 @@
+Sortarea datelor în SQL se face folosind clauza ORDER BY în instrucțiunea SELECT. Această clauză vă permite să sortați setul de rezultate în funcție de una sau mai multe coloane. Ordinea implicită de sortare este ascendentă, dar puteți specifica explicit ordinea ascendentă (ASC) sau descendentă (DESC).
+
+1. Utilizare de bază:
+    SELECT nume_produs, pret_unitar, id_furnizor
+      FROM produse
+    ORDER BY id_furnizor, pret_unitar DESC;
+
+2. Sortarea Valorilor NULL:
+    SELECT nume_produs, pret_unitar, id_furnizor
+      FROM produse
+    ORDER BY id_furnizor ASC NULLS FIRST;
+
+Sortarea este un aspect crucial al recuperării și prezentării datelor într-un mod semnificativ. Clauza ORDER BY oferă flexibilitate în specificarea criteriilor de sortare și a ordinii pentru setul dvs. de rezultate.

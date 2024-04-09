@@ -1,0 +1,24 @@
+Performarea inserțiilor în mai multe tabele în Oracle SQL implică inserarea datelor în mai multe tabele folosind o singură instrucțiune INSERT. 
+Acest lucru poate fi realizat folosind instrucțiunea INSERT ALL cu mai multe clauze INSERT INTO. Iată un exemplu:
+
+Exemplu: Inserție în Mai Multe Tabele
+Să presupunem că avem două tabele, "employees" și "departments," și dorim să inserăm date în ambele tabele într-o singură tranzacție:
+    INSERT ALL 
+       INTO employees (employee_id, employee_name, department_id, salary)
+          VALUES (1, 'John Doe', 101, 50000)
+       INTO departments (department_id, department_name, location)
+          VALUES (101, 'Development', 'New York')
+    SELECT * FROM dual;
+
+În acest exemplu:
+    Instrucțiunea INSERT ALL permite efectuarea mai multor clauze INSERT INTO într-o singură instrucțiune.
+    Prima clauză INSERT INTO inserează date în tabela "employees".
+    A doua clauză INSERT INTO inserează date în tabela "departments".
+    Instrucțiunea SELECT * FROM dual este folosită pentru a completa sintaxa INSERT ALL.
+
+Poți personaliza datele inserate în funcție de cerințele tale. Asigură-te că coloanele și valorile se aliniază corect cu structura tabelelor tale.
+
+Este important să menționăm că această metodă este utilă atunci când ai nevoie să menții consistența între datele inserate în mai multe tabele în cadrul unei singure tranzacții. 
+Dacă apare o eroare în timpul operației de inserție pentru oricare tabel, întreaga tranzacție este anulată, asigurând integritatea datelor.
+
+Întotdeauna testează inserțiile în mai multe tabele într-un mediu sigur înainte de a le utiliza într-un mediu de producție și asigură-te că tipurile de date și valorile coloanelor se potrivesc cerințelor tabelelor tale.

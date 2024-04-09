@@ -1,0 +1,48 @@
+În Oracle SQL, efectuarea operațiilor aritmetice cu date implică utilizarea diferitelor funcții pentru date și operatori aritmetici. Iată câteva scenarii comune și exemple:
+
+1. Adăugarea/Scăderea Zilelor:
+Folosiți operatorii + și - pentru a adăuga sau scădea zile de la o dată.
+    Adăugarea a 5 zile la data curentă:
+    SELECT SYSDATE + 5 AS data_viitoare
+      FROM dual;
+
+    Scăderea a 10 zile dintr-o dată specifică:
+    SELECT hire_date - 10 AS data_trecută
+      FROM employees
+     WHERE employee_id = 101;
+
+2. Calcularea Diferențelor de Date:
+Folosiți operatorul - pentru a găsi diferența dintre două date.
+    Calcularea numărului de zile între două date:
+    SELECT end_date - start_date AS diferență_zile
+      FROM some_table;
+
+3. Adăugarea/Scăderea Lunilor:
+Folosiți funcția ADD_MONTHS pentru a adăuga sau scădea luni de la o dată.
+    Adăugarea a 3 luni la o dată specifică:
+    SELECT ADD_MONTHS(some_date, 3) AS data_viitoare
+      FROM some_table;
+
+    Scăderea a 2 luni din data curentă:
+    SELECT ADD_MONTHS(SYSDATE, -2) AS data_trecută
+      FROM dual;
+
+4. Calcularea Vârstei:
+Folosiți funcția MONTHS_BETWEEN pentru a calcula numărul de luni între două date.
+    Calcularea vârstei în ani:
+    SELECT employee_name, TRUNC(MONTHS_BETWEEN(SYSDATE, birth_date) / 12) AS vârstă
+      FROM employees;
+
+5. Extracția Componentelor:
+Folosiți funcția EXTRACT pentru a recupera componente specifice (an, lună, zi) dintr-o dată.
+    Extracția anului dintr-o dată:
+    SELECT employee_name, EXTRACT(YEAR FROM hire_date) AS an_angajare
+      FROM employees;
+
+6. Aritmetica cu Intervale:
+Folosiți cuvântul cheie INTERVAL pentru operații mai complexe cu date.
+    Adăugarea a 3 luni și 10 zile la o dată:
+    SELECT some_date + INTERVAL '3' MONTH + INTERVAL '10' DAY AS data_viitoare
+      FROM some_table;
+
+Aceste exemple ilustrează flexibilitatea Oracle SQL în lucrul cu aritmetica datelor. Consultați întotdeauna documentația Oracle pentru versiunea specifică pe care o utilizați pentru informații cuprinzătoare despre funcțiile pentru date și modul lor de utilizare.
